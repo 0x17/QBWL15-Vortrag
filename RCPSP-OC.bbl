@@ -1,0 +1,53 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Demeulemeester, Herroelen, and
+  Elmaghraby}{Demeulemeester et~al.}{1996}]{Demeulemeester1996}
+Demeulemeester, E.~L., W.~S. Herroelen, and S.~E. Elmaghraby (1996, January).
+\newblock {Optimal procedures for the discrete time/cost trade-off problem in
+  project networks}.
+\newblock {\em European Journal of Operational Research\/}~{\em 88\/}(1),
+  50--68.
+
+\bibitem[\protect\citeauthoryear{Hartmann}{Hartmann}{2012}]{Hartmann2012}
+Hartmann, S. (2012, February).
+\newblock {Project scheduling with resource capacities and requests varying
+  with time: a case study}.
+\newblock {\em Flexible Services and Manufacturing Journal\/}~{\em 25\/}(1-2),
+  74--93.
+
+\bibitem[\protect\citeauthoryear{Klein}{Klein}{2000}]{Klein2000}
+Klein, R. (2000, November).
+\newblock {Project scheduling with time-varying resource constraints}.
+\newblock {\em International Journal of Production Research\/}~{\em 38\/}(16),
+  3937--3952.
+
+\bibitem[\protect\citeauthoryear{Kolisch and Hartmann}{Kolisch and
+  Hartmann}{2006}]{Kolisch2006}
+Kolisch, R. and S.~Hartmann (2006, October).
+\newblock {Experimental investigation of heuristics for resource-constrained
+  project scheduling: An update}.
+\newblock {\em European Journal of Operational Research\/}~{\em 174\/}(1),
+  23--37.
+
+\bibitem[\protect\citeauthoryear{M\"{o}hring}{M\"{o}hring}{1984}]{Mohring1984}
+M\"{o}hring, R. (1984).
+\newblock {Minimizing costs of resource requirements in project networks
+  subject to a fixed completion time}.
+\newblock {\em Operations Research\/}~{\em 32\/}(1), 89--120.
+
+\bibitem[\protect\citeauthoryear{Neumann, Schwindt, and Zimmermann}{Neumann
+  et~al.}{2003}]{Neumann2003}
+Neumann, K., C.~Schwindt, and J.~Zimmermann (2003).
+\newblock {\em {Project scheduling with time windows and scarce resources}},
+  Volume 149.
+\newblock Springer.
+
+\bibitem[\protect\citeauthoryear{Ranjbar and Kianfar}{Ranjbar and
+  Kianfar}{2010}]{Ranjbar2010}
+Ranjbar, M. and F.~Kianfar (2010).
+\newblock {Resource-Constrained Project Scheduling Problem with Flexible Work
+  Profiles: A Genetic Algorithm Approach}.
+\newblock {\em Scientia Iranica, Transaction E: Industrial Engineering, Vol.
+  17, No. 1 pp. 25-35\/}~{\em 17\/}(1), 25--35.
+
+\end{thebibliography}

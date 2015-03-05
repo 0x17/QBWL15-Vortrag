@@ -1,0 +1,13 @@
+- Idealerweise ein Projekt für alle Beispiele!!!
+
+- Alle 2+8+2 Verfahren mit rein nehmen jeweils mit Übersichtsseite und Beispiel
+
+- Beta-Verfahren je 2 x 2 x 2 Varianten erläutern
+
+- Eine Folie zum Dispositionsverfahren/prinzip
+
+- Meisten Beispiel-Abbildungen mit Tests von GA-Impl in Delphi verifizieren
+
+
+- SSGS Erklärungsfolie raus?
+- Evtl. auch Erklärungsfolien für Crossover?

@@ -1,0 +1,67 @@
+\documentclass[14pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{eurosym,amsmath,amsfonts,amssymb,hyperref}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{pgfpages}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{pbox}
+
+\newcolumntype{Z}{>{\centering\arraybackslash}X}%
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\makeatletter
+\def\newblock{\beamer@newblock}
+\makeatother
+
+\usetheme{LUH}
+\usefonttheme[onlymath]{serif}
+\usecolortheme[RGB={0,80,155}]{structure}
+\setbeamercolor{background canvas}{bg=}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+\def\footnotesize{\fontsize{9pt}{10pt}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[25. QBWL-Workshop]{Ressourcenbeschränkte Projektplanung mit kostenbehafteten Zusatzkapazitäten}
+\author[André Schnabel]{\small{André Schnabel}}
+\institute[]{Leibniz Universität Hannover \\
+           Wirtschaftswissenschaftliche Fakultät \\
+           Institut für Produktionswirtschaft}
+
+\date[März 2015]
+{
+\small{Vortrag zum 25. QBWL-Workshop \\[4mm] März 2015}}
+\logo{\includegraphics[width=0.2\textwidth]{images/luh_logo.pdf}
+}
+
+\begin{document}
+
+% Titelseite
+\begin{frame}
+\titlepage
+\end{frame}
+
+% Inhaltsverzeichnis / Gliederung
+\begin{frame}
+\frametitle{Gliederung}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{includes/contents}
+\include{includes/attention}
+\include{includes/literature}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

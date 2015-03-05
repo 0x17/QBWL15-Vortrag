@@ -1,0 +1,115 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/theme/beamerthemeLUH.sty,v 1.8 2007/01/28 20:48:30 tantau Exp $
+
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette primary2}{use=structure,fg=structure.fg,bg=}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!55!white}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!30!white}
+\setbeamercolor*{palette quaternary}{fg=black,bg=white}
+
+\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+
+\setbeamercolor*{palette sidebar primary}{use=structure,fg=structure.fg!10}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{use=structure,fg=structure.fg!50}
+\setbeamercolor*{palette sidebar quaternary}{fg=white}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor*{titlelike2}{parent=palette primary2}
+
+\setbeamercolor*{title}{parent=titlelike2}
+
+\setbeamercolor*{frametitle}{parent=titlelike2}
+\setbeamercolor*{framesubtitle}{parent=frametitle2}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor*{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor*{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor*{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor*{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor*{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor*{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamerfont*{frametitle}{parent=structure,size=\large}
+\setbeamerfont*{framesubtitle}{parent=frametitle,size=\normalsize}
+
+\setbeamerfont*{caption}{size=\footnotesize}
+\setbeamerfont*{caption name}{parent={structure,caption}}
+
+\mode
+<all>
+
+\useinnertheme{rounded}
+
+\mode<presentation>
+
+\setbeamercolor*{author in head/foot}{parent=palette primary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{date in head/foot}{parent=palette tertiary}
+
+\setbeamercolor*{section in head/foot}{parent=palette primary}
+\setbeamercolor*{subsection in head/foot}{parent=palette tertiary}
+
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author
+         in head/foot}%
+         \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in
+         head/foot}%
+         \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in
+         head/foot}%
+         \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+     %\number\value{section}.\insertframenumber\hspace*{2ex}
+     \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+     %Seite \insertframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{sidebar right}{LUH}
+{
+  \vskip-2.4cm%
+  \llap{\insertlogo\hskip0.1cm}%
+  \vfill%
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\mode
+<all>
+
+
+\ifbeamer@secheader\else\setbeamertemplate{headline}[default]\fi
+
+\mode
+<all>

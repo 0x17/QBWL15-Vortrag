@@ -19,7 +19,7 @@
 Projektdauerminimale Einplanung von Arbeitsgängen $j$ mit gegebenen
 \begin{itemize}
 \itemsep0em
-\item<2-3> Dauern $d_j$ \textcolor{gray}{$=(0, 3, 2, 2, 3, 1, 2, 0)$}
+\item<2-3> Dauern $d_j$ \textcolor{gray}{$=(0, 3, 2, 2, 3, 1, 2, 0)^T$}
 \item<3> Ressourcenbelastungen $k_{jr}$ \textcolor{gray}{$=(0, 3, 2, 2, 1, 2, 1, 0)^T$}
 \item<2-3> Reihenfolgebeziehungen $i \in \mathcal{P}_j $ \textcolor{gray}{$=(\emptyset, \{0\}, \{0\}, \ldots, \{4,5\}, \{6\})$}
 \item<3> Kapazitätsrestriktionen $K_r$ \textcolor{gray}{$=(4)$}
@@ -67,28 +67,47 @@ $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+\begin{frame}[noframenumbering]
+	\frametitle{Erzeugung relevanter Probleminstanzen}
+	\begin{itemize}
+		\item Obere Schranke für Zusatzkapazität $\overline{z}_r=\frac{1}{2}K_r$
+		\item Kostensatz für Zusatzkapazität $\kappa_r=\frac{1}{2}\mbox{GE}$
+		\item Projektdauerabhängiger Erlös \[u_{t}=C^{\mbox{max}} - \frac{C^{\mbox{max}}}{(T^{\mbox{max}}-T^{\mbox{min}})^2} \cdot (t-T^{\mbox{min}})^2\]
+	\end{itemize}
+	\begin{center}
+		\includegraphics[scale=0.26]{images/DeadlineCosts.pdf}
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
 \frametitle{Ressoucenbeschränkte Projektplanung\\mit Zusatzkapazitäten (RCPSP-OC)}
 \includegraphics<1>[page=1, scale=0.58]{images/RCPSPOCDiagram.pdf}
-\includegraphics<2>[page=2, scale=0.58]{images/RCPSPOCDiagram.pdf}\\
+\includegraphics<2>[page=2, scale=0.58]{images/RCPSPOCDiagram.pdf}
+\includegraphics<3>[page=3, scale=0.58]{images/RCPSPOCDiagram.pdf}\\
 \begin{center}
-
 \only<1>{
 \begin{tabbing}
 Überstundenkosten: \= 0 GE\\
-Projektdauer: \> 10 Perioden $\rightarrow$ Erlös: 1 GE\\
-Deckungsbeitrag: \> 1 GE - 0 GE = 1 GE
+Projektdauer: \> 10 Perioden $\rightarrow$ Erlös: 0 GE\\
+Deckungsbeitrag: \> 0 GE - 0 GE = 0 GE
 \end{tabbing}
 }
-
 \only<2>{
 \begin{tabbing}
-Überstundenkosten: \= 2 GE\\
-Projektdauer: \> 8 Perioden $\rightarrow$ Erlös: 7 GE\\
-Deckungsbeitrag: \> 7 GE - 2 GE = 5 GE
+Überstundenkosten: \= 1 GE\\
+Projektdauer: \> 8 Perioden $\rightarrow$ Erlös: 1 GE\\
+Deckungsbeitrag: \> 1 GE - 1 GE = 0 GE
 \end{tabbing}
 }
-
+\only<3>{
+\begin{tabbing}
+Überstundenkosten: \= 0{,}5 GE\\
+Projektdauer: \> 9 Perioden $\rightarrow$ Erlös: 0{,}75 GE\\
+Deckungsbeitrag: \> 0{,}75 GE - 0{,}5 GE = 0{,}25 GE
+\end{tabbing}
+}
 \end{center}
 \end{frame}
 
@@ -119,7 +138,6 @@ Deckungsbeitrag: \> 7 GE - 2 GE = 5 GE
 \begin{itemize}
 \item Seriellem Schedule Generation Scheme (SSGS)
 \item Aktivitätenlistenrepräsentation, zum Beispiel:
-%\item \textbf{Problem:} SSGS nur anwendbar bei gegebenen Kapazitäten
 \end{itemize}
 \end{itemize}
 \[\lambda=(0,1,2,4,3,5,6,7)\]
@@ -150,7 +168,7 @@ $\lambda=(0,\textbf<1>{1},\textbf<2>{2},\textbf<3>{4},\textbf<4>{3},\textbf<5>{5
 \begin{itemize}
 \item[] \textbf{Problem 2:}\\Lösungsgüte von Aktivitätenliste $\lambda$ abhängig\\[7mm]
 \item Vollständige Enumeration topologischer Sortierungen nicht handhabbar\\
-$\rightarrow$ Suchraum mit Metaheuristik erkunden\\[4mm]
+$\rightarrow$ Suchraum mit Metaheuristik erkunden\\[6mm]
 \item Erster Kandidat: Genetischer Algorithmus
 \begin{itemize}
 \item {\footnotesize 3 der Top 5 RCPSP-Heuristiken nach \cite{Kolisch2006}}
@@ -163,17 +181,6 @@ $\rightarrow$ Suchraum mit Metaheuristik erkunden\\[4mm]
 \frametitle{Genetische Algorithmen}
 Repräsentationen im Überblick
 \begin{itemize}
-	\item \small{Vorbestimmung des Ressourcenprofils}\\[2mm]
-	\begin{small}
-	\begin{tabular}{cp{7.5cm}}
-	\hline
-	Individuum & Planerzeugung\\
-	\hline
-	 $(\lambda|\tilde{z}_{rt})$ & Kapazität entspricht $K_r+z_{rt}$ mit $z_{rt} \leq \tilde{z}_{rt}$ \\
-	 $(\lambda|\tilde{z}_r)$ & Kapazität entspricht $K_r+z_r$ mit $z_{rt} \leq \tilde{z}_{r}$\\
-	\end{tabular}
-	\end{small}\\[4mm]
-
 	\item \small{Startzeit zwischen Reihenfolge- und Ressourcenzulässigkeit}\\[2mm]
 	\begin{small}
 	\begin{tabular}{cp{7.5cm}}
@@ -184,30 +191,161 @@ Repräsentationen im Überblick
 	$(\lambda|\tau)$& Startzeit beliebig in Zeitfenster $\tau \in [0,1)$\\
 	$(\lambda|\beta)$& Startzeit an Zeitfensterrand $\beta \in \{0,1\}$\\
 	\end{tabular}
+	\end{small}\\[4mm]
+	
+	\item \small{Vorbestimmung des Ressourcenprofils}\\[2mm]
+	\begin{small}
+		\begin{tabular}{cp{7.5cm}}
+			\hline
+			Individuum & Planerzeugung\\
+			\hline
+			$(\lambda|\tilde{z}_{rt})$ & Kapazität entspricht $K_r+z_{rt}$ mit $z_{rt} \leq \tilde{z}_{rt}$ \\
+			$(\lambda|\tilde{z}_r)$ & Kapazität entspricht $K_r+z_r$ mit $z_{rt} \leq \tilde{z}_{r}$\\
+		\end{tabular}
 	\end{small}
 \end{itemize}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
-\frametitle{Zusatzkapazitätsnutzung je AG bestimmen}
+	\frametitle{Teilplanvervollständigung $(\lambda)$}
+	\begin{itemize}
+		\item Probiere alle zulässigen $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$
+		\item Vervollständige jeweils resultierenden Teilplan mit SSGS ohne ZK
+		\item Berechne DB der vollständigen Pläne
+		\item Wähle $ST_j$, welches DB maximiert
+	\end{itemize}
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $(\lambda)=(0,1,4,2,5,3,6,7)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & Regret-Based Biased Random Sampling (LFTs)\tabularnewline
+				\hline 
+				Rekombination & One Point Crossover\tabularnewline
+				\hline 
+				Mutation & Neighborhood Swap\tabularnewline
+				\hline 
+				Fitness & DB von Plan erzeugt durch SSGS-OC\tabularnewline
+				\hline 
+			\end{tabular}
+		\end{center}
+	\end{small}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Beispiel $(\lambda)$: Einplanung von AG 2}
+	\begin{center}
+		\includegraphics<1>[page=1, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<2>[page=2, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<3>[page=3, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<4>[page=4, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<5>[page=5, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<6>[page=6, scale=0.65]{images/ssgsoc.pdf}
+		\includegraphics<7>[page=5, scale=0.65]{images/ssgsoc.pdf}\\
+		
+		\only<1>{
+			Bisher Arbeitsgänge 0, 1, 2 und 3 eingeplant.
+			\vspace*{12.5mm}
+		}
+		
+		\only<2>{
+			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
+			AG 2 mit $ST_2=\underline{t}=1$ einplanen.
+			%\vspace*{15mm}
+			\textcolor{white}{$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r\mbox{z}_{rt} = 1\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$}
+		}
+		
+		\only<3>{
+			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
+			AG 2 mit $ST_2=\underline{t}=1$ einplanen.\\
+			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 1\mbox{ GE} - 1\mbox{ GE} = 0\mbox{ GE}$
+		}
+		
+		\only<4>{
+			Inkrementiere\\
+			AG 2 mit $ST_2=2$ einplanen.\\
+			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 1\mbox{ GE} - 1\mbox{ GE} = 0\mbox{ GE}$
+		}
+		
+		\only<5>{
+			Inkrementiere\\
+			AG 2 mit $ST_2=3$ einplanen.\\
+			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = \frac{3}{4}\mbox{ GE} - \frac{1}{2}\mbox{ GE} = \frac{1}{4}\mbox{ GE}$
+		}
+		
+		\only<6>{
+			Früheste Ressourcenzulässigkeit $\overline{t}$\\
+			AG 2 mit $ST_4=\overline{t}=4$ einplanen.\\
+			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 0\mbox{ GE} - 0\mbox{ GE} = 0\mbox{ GE}$
+		}
+		
+		\only<7>{
+			Bester Kandidat für Einplanungszeitpunkt\\
+			AG 2 mit $ST_4=3$ einplanen.\\
+			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = \frac{3}{4}\mbox{ GE} - \frac{1}{2}\mbox{ GE} = \frac{1}{4}\mbox{ GE}$
+		}
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Wahl in Zeitfenster durch GA $(\lambda|\tau)$}
+	\begin{itemize}
+		\item Aktivitätenliste um $\tau_j \in  [0, 1)$ erweitern
+		\item Bei Einplanung von $j$ wähle $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ als \[ST_j = \overline{t} - [\; (\overline{t}-\underline{t}) \cdot \tau_j \; ] \]
+	\end{itemize}
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $\begin{pmatrix}\lambda\\\tau\end{pmatrix}=\begin{pmatrix}0,1,3,5,2,4,6,7\\0,0.3,0.5,0.8,0.9,0.2,0.1,0.2\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & $\tau_j=\mbox{rand} \in [0, 1) \; \forall j$\tabularnewline
+				\hline 
+				Rekombination & Gemeinsamer OPC mit $\lambda$\tabularnewline
+				\hline 
+				Mutation & $\tau_j=\mbox{rand } \in [0,1)$ mit $P_{mutate}$\tabularnewline
+				\hline 
+				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				\hline 
+			\end{tabular}
+		\end{center}
+	\end{small}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Beispiel $(\lambda|\tau)$: Einplanung von AG 2}
+	\includegraphics<1-2>[page=1, scale=0.7]{images/ssgstau.pdf}
+	\includegraphics<3>[page=2, scale=0.7]{images/ssgstau.pdf}
+	\only<1>{\[ ST_2 = \overline{t} - [ (\overline{t}-\underline{t}) \cdot \tau ] \]}
+	\only<2>{\[ ST_2 = 4 - [ (4-1) \cdot 0{,}3 ] = 4 - [ 0{,}9 ] = 3\]}
+	\only<3>{\[ ST_2 = 4 - [ (4-1) \cdot 0{,}9 ] = 4 - [ 2{,}7 ] = 1\]}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Planung an Zeitfensterrand $(\lambda|\beta)$}
 \begin{itemize}
 \item Aktivitätenliste um Binärvektor $\beta$ erweitern
-\item Einplanung von Arbeitsgang $\lambda_i$ in Periode $t$ ressourcenzulässig, falls in jeder Durchführungsperiode Gesamtverbrauch unterhalb
+\item Einplanung von Arbeitsgang $j$ in Periode $t$ ressourcenzulässig, falls in jeder Durchführungsperiode Gesamtverbrauch unterhalb
 	\begin{itemize}
-	\item Fall $\beta_i=0$: Normalkapazität liegt
-	\item Fall $\beta_i=1$: Normalkapazität + maximaler Zusatzkapazität (ZK) liegt
+	\item Fall $\beta_j=0$: Normalkapazität liegt ($ST_j=\overline{t}$)
+	\item Fall $\beta_j=1$: Normalkapazität + maximaler Zusatzkapazität (ZK) liegt ($ST_j \geq \underline{t}$)
 	\end{itemize}
 \end{itemize}
-
 \begin{small}
 \begin{center}
 \begin{tabular}{rl}
 \hline 
-Individuum & $\begin{pmatrix}\lambda\\\beta\end{pmatrix}=\begin{pmatrix}0,1,4,2,5,3,6,7\\0,1,1,0,1,0,1,0\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+Individuum & $\begin{pmatrix}\lambda\\\beta\end{pmatrix}=\begin{pmatrix}0,1,3,5,2,4,6,7\\0,1,1,0,1,0,1,0\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 \hline 
-Initialpopulation & $\beta_i=\mbox{rand }0\ldots 1 \; \forall i \in \mathcal{J}$\tabularnewline
+Initialpopulation & $\beta_i=\mbox{rand} \in \{0,1\} \; \forall i \in \mathcal{J}$\tabularnewline
 \hline 
-Rekombination & Gemeinsamer OPC mit $\lambda$\tabularnewline
+Rekombination & One Point Crossover\tabularnewline
 \hline 
 Mutation & $\beta_i=\neg \beta_i$ mit $P_{mutate}$\tabularnewline
 \hline 
@@ -219,174 +357,110 @@ Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
 \end{frame}
 
 \begin{frame}
-\frametitle{Beispiel für $(\lambda|\beta)$:\\``untere'' Einplanung von AG 4}
+\frametitle{$(\lambda|\beta)$-Varianten}
+\begin{itemize}
+	\item Arbeitsgangzuordnung: AG $j=\lambda_i$ nutzt ZK, gdw.
+	\begin{itemize}
+		\item $\beta_i=1$ (Listenposition assoziiert)
+		\item $\beta_j=1$ (AG-Nummer assoziiert)\\[4mm]
+	\end{itemize}
+	\item Einplanungsart
+	\begin{itemize}
+		\item "`von unten"': Nutze erst Normalkapazität
+		\item "`von oben"': Nutze erst Überstunden\\[4mm]
+	\end{itemize}
+	\item Crossover
+	\begin{itemize}
+		\item Gemeinsamer One Point Crossover
+		\item Zwei getrennte One Point Crossovers\\[5mm]
+	\end{itemize}
+	\item[$\implies$] Insgesamt $2 \cdot 2 \cdot 2 = 8$ unterschiedliche Varianten
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Beispiel $(\lambda|\beta)$: "`untere"' Einplanung}
 \includegraphics<1>[page=1, scale=0.75]{images/SSGSbetaLower.pdf}
 \includegraphics<2>[page=2, scale=0.75]{images/SSGSbetaLower.pdf}
 \end{frame}
 
 \begin{frame}
-\frametitle{Beispiel für $(\lambda|\beta)$:\\``obere'' Einplanung von AG 4}
+\frametitle{Beispiel $(\lambda|\beta)$: "`obere"' Einplanung}
 \includegraphics<1>[page=1, scale=0.75]{images/SSGSbetaUpper.pdf}
 \includegraphics<2>[page=2, scale=0.75]{images/SSGSbetaUpper.pdf}
 \includegraphics<3>[page=3, scale=0.75]{images/SSGSbetaUpper.pdf}
 \includegraphics<4>[page=4, scale=0.75]{images/SSGSbetaUpper.pdf}
 \end{frame}
 
-\begin{frame}
-\frametitle{Entscheidung über ZK in SGS einbauen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{itemize}
-\item Bei Einplanung von AG $j$ Zeitfenster zwischen
+\begin{frame}
+	\frametitle{Bestimmte Zusatzkapazität je\\Ressource und Periode erlauben $(\lambda|z_{rt})$}
 	\begin{itemize}
-	\item Reihenfolgezulässigkeit $\underline{t}$ und
-	\item Ressourcenzulässigkeit $\overline{t}$
+		\item Aktivitätenliste um $\tilde{z}_{rt} \in \{0, \ldots, \overline{z}_r \}$ erweitern
+		\item Für Ressourcenzulässigkeit in SGS zur Verfügung stehende Kapazität: Normalkapazität + $\tilde{z}_{rt}$
+		\item Möglicher Gebrauch von Überstunden über Planungshorizont \textcolor{red}{\emph{flexibel}}
 	\end{itemize}
-bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, sodass ZK-Grenzen $\overline{z}_r$ eingehalten werden\\[8mm]
-\item Zwei Varianten
-\begin{enumerate}
-	\item Auswahl durch GA 
-	\item Teilplanvervollständigung mit SGS ohne ZK
-	\end{enumerate}
-\end{itemize}
-
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $(\lambda|\tilde{z}_{rt})=(0,1,3,5,2,4,6,7|\begin{pmatrix} 0 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & $\tilde{z}_{rt}=\mbox{rand} \in \{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
+				\hline 
+				Rekombination & One Point Crossover\tabularnewline
+				\hline 
+				Mutation & $\tilde{z}_{rt}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
+				\hline 
+				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				\hline 
+			\end{tabular}
+		\end{center}
+	\end{small}
 \end{frame}
 
 \begin{frame}
-\frametitle{Variante 1: Auswahl durch GA}
-\begin{itemize}
-\item Aktivitätenliste um $\tau_j \in \{ 0, \ldots, 99 \}$ erweitern
-\item Bei Einplanung von $j$ wähle $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ als \[ST_j = \underline{t} + \lfloor \frac{\overline{t}-\underline{t}}{100} \cdot \tau_j \rfloor\]
-\end{itemize}
+	\frametitle{Beispiel $(\lambda|z_{rt})$: Einplanung von AG 2}
+	\includegraphics<1>[page=1, scale=0.75]{images/SSGSzrt.pdf}
+	\includegraphics<2>[page=2, scale=0.75]{images/SSGSzrt.pdf}
+\end{frame}
 
-\begin{small}
-\begin{center}
-\begin{tabular}{rl}
-\hline 
-Individuum & $\begin{pmatrix}\lambda\\\tau\end{pmatrix}=\begin{pmatrix}0,1,4,2,5,3,6,7\\0,49,94,60,39,59,69,0\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
-\hline 
-Initialpopulation & $\tau_j=\mbox{rand }0\ldots99 \; \forall j$\tabularnewline
-\hline 
-Rekombination & Gemeinsamer OPC mit $\lambda$\tabularnewline
-\hline 
-Mutation & $\tau_j=\mbox{rand }0\ldots99$ mit $P_{mutate}$\tabularnewline
-\hline 
-Fitness & DB von Plan erzeugt durch SSGS-OC\tabularnewline
-\hline 
-\end{tabular}
-\end{center}
-\end{small}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}
+	\frametitle{Bestimmte Zusatzkapazität je\\Ressource erlauben $(\lambda|z_{r})$}
+	\begin{itemize}
+		\item Aktivitätenliste um $\tilde{z}_{r} \in \{0, \ldots, \overline{z}_r \}$ erweitern
+		\item Für Ressourcenzulässigkeit in SGS zur Verfügung stehende Kapazität: Normalkapazität + $\tilde{z}_{r}$
+		\item Möglicher Gebrauch von Überstunden über Planungshorizont \textcolor{red}{\emph{konstant}}
+	\end{itemize}
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $(\lambda|\tilde{z}_{r})=(0,1,3,5,2,4,6,7|0,2,2,0,3,0,\ldots)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & $\tilde{z}_{r}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}\} \; \forall r$\tabularnewline
+				\hline 
+				Rekombination & One Point Crossover\tabularnewline
+				\hline 
+				Mutation & $\tilde{z}_{r}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
+				\hline 
+				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{small}
 \end{frame}
 
 \begin{frame}
-\frametitle{Beispiel für $(\lambda|\tau)$: Einplanung von AG 4}
-\includegraphics<1>[page=1, scale=0.65]{images/ssgstau.pdf}
-\includegraphics<2>[page=2, scale=0.65]{images/ssgstau.pdf}
-\only<1>{\[1 + \lfloor \frac{7-1}{100} \cdot 45 \rfloor = 1 + \lfloor 2{,}7 \rfloor = 3\]}
-\only<2>{\[1 + \lfloor \frac{7-1}{100} \cdot 77 \rfloor = 1 + \lfloor 4{,}62 \rfloor = 5\]}
+	\frametitle{Beispiel $(\lambda|z_{r})$: Einplanung von AG 2}
+	\includegraphics<1>[page=1, scale=0.75]{images/SSGSzr.pdf}
+	\includegraphics<2>[page=2, scale=0.75]{images/SSGSzr.pdf}
 \end{frame}
 
-\begin{frame}
-\frametitle{Variante 2: Auswahl durch Teilplanvervollständigung}
-\begin{itemize}
-\item Probiere alle zulässigen $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$
-\item Vervollständige jeweils resultierenden Teilplan mit SSGS ohne ZK
-\item Berechne DB der vollständigen Pläne
-\item Wähle $ST_j$, welches DB maximiert
-\end{itemize}
-
-\begin{small}
-\begin{center}
-\begin{tabular}{rl}
-\hline 
-Individuum & $(\lambda)=(0,1,4,2,5,3,6,7)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
-\hline 
-Initialpopulation & Regret-Based Biased Random Sampling (LFTs)\tabularnewline
-\hline 
-Rekombination & One Point Crossover\tabularnewline
-\hline 
-Mutation & Neighborhood Swap\tabularnewline
-\hline 
-Fitness & DB von Plan erzeugt durch SSGS-OC\tabularnewline
-\hline 
-\end{tabular}
-\end{center}
-\end{small}
-
-\end{frame}
-
-
-\begin{frame}[t]
-\frametitle{Beispiel für $(\lambda)$: Einplanung von AG 4}
-\begin{center}
-\includegraphics<1>[page=1, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<2>[page=2, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<3>[page=3, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<4>[page=4, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<5>[page=5, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<6>[page=6, scale=0.65]{images/ssgsoc.pdf}
-\includegraphics<7>[page=5, scale=0.65]{images/ssgsoc.pdf}\\
-
-\only<1>{
-Bisher Arbeitsgänge 0, 1, 2 und 3 eingeplant.
-\vspace*{12.5mm}
-}
-
-\only<2>{
-Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-AG 2 mit $ST_2=\underline{t}=1$ einplanen.
-%\vspace*{15mm}
-\textcolor{white}{$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r\mbox{z}_{rt} = 7\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$}
-}
-
-\only<3>{
-Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-AG 2 mit $ST_2=\underline{t}=1$ einplanen.\\
-$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 7\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$
-}
-
-\only<4>{
-Inkrementiere\\
-AG 2 mit $ST_2=2$ einplanen.\\
-$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 7\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$
-}
-
-\only<5>{
-Inkrementiere\\
-AG 2 mit $ST_2=3$ einplanen.\\
-$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 6\mbox{ GE} - 3\mbox{ GE} = 3\mbox{ GE}$
-}
-
-\only<6>{
-Früheste Ressourcenzulässigkeit $\overline{t}$\\
-AG 2 mit $ST_4=\overline{t}=4$ einplanen.\\
-$\mbox{DB} = u_{13}-\sum_r \sum_t \kappa_r z_{rt} = 0\mbox{ GE} - 0\mbox{ GE} = 0\mbox{ GE}$
-}
-
-\only<7>{
-Bester Kandidat für Einplanungszeitpunkt\\
-AG 2 mit $ST_4=3$ einplanen.\\
-$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 6\mbox{ GE} - 2\mbox{ GE} = 4\mbox{ GE}$
-}
-
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ablauf Teilplanvervollständigung}
-Bei Einplanung von AG $j$:
-\vspace*{2mm}
-\begin{itemize}
-\item Für alle Perioden $t$ zwischen Reihenfolgezulässigkeit und Ressourcenzulässigkeit von AG $j$:
-\begin{itemize}
-\item Vervollständigung des Teilplans mit $ST_j=t$ und SSGS ohne Zusatzkapazität
-\item Bestimmung des Deckungsbeitrags\\[3mm]
-\end{itemize}
-\item Setze Startzeit von AG $j$ auf Periode, bei der vervollständigter Plan den Deckungsbeitrag maximiert
-\end{itemize}
-\end{frame}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Numerische Ergebnisse}
 \begin{frame}
@@ -398,35 +472,38 @@ Bei Einplanung von AG $j$:
 \begin{frame}[t]
 \frametitle{Numerische Ergebnisse}
 \begin{footnotesize}
-\textbf{Parameter:} Zeitlimit$=\only<1>{1}\only<2>{2}\only<3>{10}\only<4>{15}s$, Populationsgröße$=80$, $P_{mutate}=5\%$\\
-\only<1>{\textbf{Testinstanzen:} PSPLIB, j30 (30+2 Aktivitäten)\\199 optimal in $<$2 Stunden lösbare kapazitätsbeschränkte Projekte}
-\only<2>{\textbf{Testinstanzen:} PSPLIB, j60 (60+2 Aktivitäten)\\480 Projekte}
-\only<3>{\textbf{Testinstanzen:} PSPLIB, j90 (90+2 Aktivitäten)\\480 Projekte}
-\only<4>{\textbf{Testinstanzen:} PSPLIB, j120 (120+2 Aktivitäten)\\600 Projekte}
+\textbf{Parameter:} Populationsgröße$=80$, $P_{mutate}=5\%$\\
+\textbf{Testinstanzen:} PSPLIB\\
+j30: 199 optimal in $<$2 Stunden lösbare kapazitätsbeschränkte Projekte, Zeitlimit $=1s$\\
+j120: 600 Projekte, Zeitlimit $=15s$
 
-\begin{center}
-
-\begin{tabular}{ccccccccccccc}
-\hline
-representation & $(\lambda|z_{rt})$ & $(\lambda|z_r)$ & $(\lambda|\beta^{lsu})$ & $(\lambda|\beta^{Lsu})$ & $(\lambda|\beta^{lSu})$ & $(\lambda|\beta^{LSu})$ & $(\lambda|\beta^{lsU})$ & $(\lambda|\beta^{LsU})$ & $(\lambda|\beta^{lSU})$ & $(\lambda|\beta^{LSU})$ & $(\lambda|\tau)$ & $(\lambda)$\\[3pt]
-\hline
-$\varnothing$ deviation&1.41\%&3.01\%&2.80\%&2.91\%&3.35\%&3.75\%&4.16\%&4.19\%&4.92\%&5.27\%&2.45\%&1.20\%\\
-\hline
-max. deviation&8.83\%&45.00\%&45.00\%&45.00\%&45.00\%&45.00\%&45.00\%&45.00\%&45.00\%&45.00\%&20.23\%&14.29\%\\
-\hline
-varcoeff(dev)&1.45&1.77&1.94&1.88&1.61&1.50&1.61&1.61&1.33&1.27&1.30&1.69\\
-\hline
-\% optimal&46.73\%&28.64\%&29.65\%&30.15\%&28.64\%&28.14\%&24.62\%&25.13\%&20.60\%&21.11\%&41.21\%&52.76\%\\
-\hline
-\# best&116&70&74&72&65&60&60&62&44&46&94&128\\
-\hline
-$\varnothing$ rank&1.98&2.60&2.37&2.54&3.15&3.52&3.14&3.24&4.12&4.39&2.98&1.78\\\hline
+\begin{center}	
+\tabcolsep=0.16cm
+\begin{tabular}{|c|rrrc|rrrc|}
+	\hline
+	& \multicolumn{4}{c|}{j30} & \multicolumn{4}{c|}{j60}\\
+	 & $\varnothing$ Gap & $\overline{\mbox{Gap}}$ & Opt & $\varnothing$ Rang & $\varnothing$ Gap & $\overline{\mbox{Gap}}$ & BBL & $\varnothing$ Rang \\[3pt]
+	\hline
+   $(\lambda|z_{rt})$&1.41\%&8.83\%&46.73\%&1.98&1.91\%&12.38\%&21.20\%&3.63\\
+	\hline
+   $(\lambda|z_r)$&3.01\%&45.00\%&28.64\%&2.60&0.95\%&8.30\%&52.14\%&2.19\\
+	\hline
+	$(\lambda|\beta)$&2.80\%&45.00\%&29.65\%&2.37&1.61\%&8.31\%&25.98\%&2.97\\
+	best & \multicolumn{4}{c|}{AG, Gem. OPC, oberes SGS} & \multicolumn{4}{c|}{Liste, Gem. OPC, unteres SGS}\\
+	\hline
+	$(\lambda|\beta)$&5.27\%&45.00\%&21.11\%&4.39&11.76\%&28.25\%&8.55\%&9.56\\
+	worst & \multicolumn{4}{c|}{Liste, Getr. OPCs, oberes SGS} & \multicolumn{4}{c|}{Liste, Getr. OPCs, oberes SGS}\\
+	\hline
+	$(\lambda|\tau)$&2.45\%&20.23\%&41.21\%&2.98&4.48\%&14.17\%&2.56\%&6.08\\
+	\hline
+	$(\lambda)$&1.20\%&14.29\%&52.76\%&1.78&5.04\%&19.18\%&27.52\%&5.40\\
+	\hline
 \end{tabular}
-
 \end{center}
-\end{footnotesize}
-\end{frame}
 
+\end{footnotesize}	
+
+\end{frame}
 
 \section{Ausblick}
 
@@ -440,13 +517,13 @@ $\varnothing$ rank&1.98&2.60&2.37&2.54&3.15&3.52&3.14&3.24&4.12&4.39&2.98&1.78\\
 \begin{itemize}
 \item Heuristische Methoden
 	\begin{itemize}
-	\item Integration weiterer Elemente führender RCPSP-Heuristiken
+	\item Techniken führender RCPSP-Heuristiken
 		\begin{itemize}
 		\item Vorwärts-Rückwärts-Verbesserung
 		\item Peak-Crossover
 		\item Zweite Suchphase in Nachbarschaft
 		\end{itemize}
-	\item Stellschrauben im genetischen Algorithmus:\\$N^G$, $N^I$, $P_{mutate}$, genetische Operatoren\\[4mm]
+	\item Stellschrauben im GA: $N^G$, $N^I$, $P_{mutate}$\\[4mm]
 	\end{itemize}
 	
 \item Exakte Methoden

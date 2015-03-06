@@ -96,70 +96,34 @@ Backup-Folien
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[noframenumbering]
-\frametitle{Bestimmte Zusatzkapazität je\\Ressource und Periode erlauben}
+\frametitle{Entscheidung über ZK in SGS einbauen}
 \begin{itemize}
-\item Aktivitätenliste um $\tilde{z}_{rt} \in \{0, \ldots, \overline{z}_r \}$ erweitern
-\item Für Ressourcenzulässigkeit in SGS zur Verfügung stehende Kapazität: Normalkapazität + $\tilde{z}_{rt}$
-\item Möglicher Gebrauch von Überstunden über Planungshorizont \textcolor{red}{\emph{flexibel}}
+\item Bei Einplanung von AG $j$ Zeitfenster zwischen
+	\begin{itemize}
+	\item Reihenfolgezulässigkeit $\underline{t}$ und
+	\item Ressourcenzulässigkeit $\overline{t}$
+	\end{itemize}
+bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, sodass ZK-Grenzen $\overline{z}_r$ eingehalten werden\\[8mm]
+\item Zwei Varianten
+\begin{enumerate}
+	\item Auswahl durch GA 
+	\item Teilplanvervollständigung mit SGS ohne ZK
+	\end{enumerate}
 \end{itemize}
-
-\begin{small}
-\begin{center}
-\begin{tabular}{rl}
-\hline 
-Individuum & $(\lambda|\tilde{z}_{rt})=(0,1,3,2,4|\begin{pmatrix} 0 & 2 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
-\hline 
-Initialpopulation & $\tilde{z}_{rt}=\mbox{rand }0\ldots\overline{z}_{r}\;\forall r,t$\tabularnewline
-\hline 
-Rekombination & One Point Crossover\tabularnewline
-\hline 
-Mutation & $\tilde{z}_{rt}=\mbox{rand }0\ldots\overline{z}_{r}$ mit $P_{mutate}$\tabularnewline
-\hline 
-Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
-\hline 
-\end{tabular}
-\end{center}
-\end{small}
 \end{frame}
 
 \begin{frame}[noframenumbering]
-\frametitle{Beispiel für $(\lambda|z_{rt})$:\\Einplanung von AG 2}
-\includegraphics<1>[page=1, scale=0.7]{images/SSGSzrt.pdf}
-\includegraphics<2>[page=2, scale=0.7]{images/SSGSzrt.pdf}
-\end{frame}
-
-\begin{frame}[noframenumbering]
-\frametitle{Bestimmte Zusatzkapazität je\\Ressource erlauben}
-
-\begin{itemize}
-\item Aktivitätenliste um $\tilde{z}_{r} \in \{0, \ldots, \overline{z}_r \}$ erweitern
-\item Für Ressourcenzulässigkeit in SGS zur Verfügung stehende Kapazität: Normalkapazität + $\tilde{z}_{r}$
-\item Möglicher Gebrauch von Überstunden über Planungshorizont \textcolor{red}{\emph{konstant}}
-\end{itemize}
-
-\begin{small}
-\begin{center}
-\begin{tabular}{rl}
-\hline 
-Individuum & $(\lambda|\tilde{z}_{r})=(0,1,3,2,4|0,2,2,0,3,2,1,\ldots)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
-\hline 
-Initialpopulation & $\tilde{z}_{r}=\mbox{rand }0\ldots\overline{z}_{r} \; \forall r$\tabularnewline
-\hline 
-Rekombination & One Point Crossover\tabularnewline
-\hline 
-Mutation & $\tilde{z}_{r}=\mbox{rand }0\ldots\overline{z}_{r}$ mit $P_{mutate}$\tabularnewline
-\hline 
-Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
-\hline
-\end{tabular}
-\end{center}
-\end{small}
-\end{frame}
-
-\begin{frame}[noframenumbering]
-\frametitle{Beispiel für $(\lambda|z_{r})$:\\Einplanung von AG 2}
-\includegraphics<1>[page=1, scale=0.7]{images/SSGSzr.pdf}
-\includegraphics<2>[page=2, scale=0.7]{images/SSGSzr.pdf}
+	\frametitle{Ablauf Teilplanvervollständigung}
+	Bei Einplanung von AG $j$:
+	\vspace*{2mm}
+	\begin{itemize}
+		\item Für alle Perioden $t$ zwischen Reihenfolgezulässigkeit und Ressourcenzulässigkeit von AG $j$:
+		\begin{itemize}
+			\item Vervollständigung des Teilplans mit $ST_j=t$ und SSGS ohne Zusatzkapazität
+			\item Bestimmung des Deckungsbeitrags\\[3mm]
+		\end{itemize}
+		\item Setze Startzeit von AG $j$ auf Periode, bei der vervollständigter Plan den Deckungsbeitrag maximiert
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,22 +133,6 @@ Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
 %\frametitle{Gliederung}
 %\tableofcontents[current] %, hidesubsections]
 %\end{frame}
-
-\begin{frame}[noframenumbering]
-\frametitle{Erzeugung relevanter Probleminstanzen}
-
-\begin{itemize}
-\item Obere Schranke für Zusatzkapazität $\overline{z}_r=\frac{1}{2}K_r$
-\item Kostensatz für Zusatzkapazität $\kappa_r=\frac{1}{2}\mbox{GE}$
-\item Projektdauerabhängiger Erlös \[u_{t}=C^{\mbox{max}} - \frac{C^{\mbox{max}}}{(T^{\mbox{max}}-T^{\mbox{min}})^2} \cdot (t-T^{\mbox{min}})^2\]
-\end{itemize}
-
-\begin{center}
-\includegraphics[scale=0.26]{images/DeadlineCosts.pdf}
-\end{center}
-
-\end{frame}
-
 
 \begin{frame}[noframenumbering]
 \frametitle{Parameter der Erlösfunktion}

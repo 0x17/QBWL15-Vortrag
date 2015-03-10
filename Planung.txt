@@ -1,2 +1,0 @@
-- Eine Folie zum Dispositionsverfahren/prinzip
-- Meisten Beispiel-Abbildungen mit Tests von GA-Impl in Delphi verifizieren

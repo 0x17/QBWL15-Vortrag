@@ -2,7 +2,7 @@
 %==========================================================================================
 \section{Ressourcenbeschränkte Projektplanung und Zusatzkapazitäten}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 \frametitle{Gliederung}
 \tableofcontents[current, hideallsubsections]
 \end{frame}
@@ -32,9 +32,9 @@ Projektdauerminimale Einplanung von Arbeitsgängen $j$ mit gegebenen
 \begin{small}
 Praxisbeispiel: Aufarbeitung eines Triebwerks durch Dienstleister
 \begin{itemize}
-\item<1-3> Projektdauer {\large $\downarrow$} $\implies$ Zahlungsbereitschaft {\large $\uparrow$\\}
-\item<2-3> Überstunden {\large $\uparrow$} $\implies$ Projektdauer {\large $\downarrow$} Kosten {\large $\uparrow$}\\
-\item<3>[] \begin{tabbing}
+\item Projektdauer {\large $\downarrow$} $\implies$ Zahlungsbereitschaft {\large $\uparrow$\\}
+\item Überstunden {\large $\uparrow$} $\implies$ Projektdauer {\large $\downarrow$} Kosten {\large $\uparrow$}\\
+\item[] \begin{tabbing}
 $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 \>Dauer- und Kostenminimierung
 \end{tabbing}
@@ -42,101 +42,36 @@ $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 \end{itemize}
 \end{small}
 \begin{center}
-\includegraphics<1>[page=1,scale=0.29]{images/ErloesKostenDeckungsbeitrag.pdf}
-\includegraphics<2>[page=2,scale=0.29]{images/ErloesKostenDeckungsbeitrag.pdf}
-\includegraphics<3>[page=3,scale=0.29]{images/ErloesKostenDeckungsbeitrag.pdf}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Konzeptionelles Modell: RCPSP\only<2>{-OC}}
-\begin{small}
-\begin{itemize}
-\item Zielfunktion \only<1>{\[\mbox{min } FT_J \textcolor{white}{- \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r z_{rt}} \]\\[4.5mm]}\only<2>{\textcolor{red}{\[\mbox{max } u_{FT_J} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r z_{rt}\]}}
-\item Reihenfolgerestriktionen \[FT_i + d_i \leq FT_j \quad\quad\quad\quad j \in \mathcal{J}, i \in \mathcal{P}_j\]
-\item Kapazitätsrestriktionen \[\sum_{j \in \mathcal{S}_t} k_{jr} \leq K_r\only<1>{\textcolor{white}{+ z_{rt}}}\only<2>{\textcolor{red}{+ z_{rt}}} \quad\quad\quad\; r \in \mathcal{R}, t \in \mathcal{T} \]
-\[\mathcal{S}_t = \{j\;|\;(FT_j-d_j) < t \leq FT_j\}\]
-\item<2> Obere Schranke für Zusatzkapazität \textcolor{red}{\[z_{rt} \leq \overline{z}_r \quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, t \in \mathcal{T}\]}
-\end{itemize}
-\end{small}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[t]
-\frametitle{Ressoucenbeschränkte Projektplanung\\mit Zusatzkapazitäten (RCPSP-OC)}
-\begin{center}
-\includegraphics<1>[page=1, scale=0.75]{images/RCPSPOCDiagram.pdf}
-\includegraphics<2>[page=2, scale=0.75]{images/RCPSPOCDiagram.pdf}
-\includegraphics<3>[page=3, scale=0.75]{images/RCPSPOCDiagram.pdf}
+\includegraphics[page=3,scale=0.29]{images/ErloesKostenDeckungsbeitrag.pdf}
 \end{center}
 \end{frame}
 
 %==========================================================================================
 
+\begin{frame}[t]
+	\frametitle{Projektplanung mit Zusatzkapazitäten}
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/RCPSPOCIntro.pdf}\\
+	\end{center}
+	
+	{\small
+		Deckungsbeitragsmaximale Einplanung von Arbeitsgängen mit zusätzlich gegebenen
+		\begin{itemize}
+			\itemsep0em
+			\item Zusatzkapazitätskostensätzen $\kappa_r$			
+			\item Oberen Schranken für Zusatzkapazität $\overline{z}_r$
+			\item Projektdauerabhängigen Erlösen $u_t$
+		\end{itemize}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Heuristische Lösungsverfahren}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 \frametitle{Gliederung}
 \tableofcontents[current,currentsubsection]
-\end{frame}
-
-\begin{frame}
-\frametitle{Notwendigkeit heuristischer Lösung}
-\begin{itemize}
-\item RCPSP ist $\mathcal{NP}$-schweres Problem
-\item und RCPSP $\preceq_p$ RCPSP-OC: $\overline{z}_{r}=0, u_t=-t$
-\item[] $\implies$ RCPSP-OC ist $\mathcal{NP}$-schweres Problem\\[10mm]
-\item Exakte Lösungsverfahren für praxisnahe Problemgrößen nicht handhabbar
-\item[] $\rightarrow$ Heuristik
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivation zur Verwendung eines seriellen Schedule Generation Scheme (SSGS)}
-\begin{itemize}
-\item Dominierende Heuristiken in Untersuchung von RCPSP-Heuristiken durch {\footnotesize \cite{Kolisch2006}}:\\[6mm] Metaheuristiken basierend auf
-\begin{itemize}
-\item Seriellem Schedule Generation Scheme (SSGS)
-\item Aktivitätenlistenrepräsentation, zum Beispiel:
-\end{itemize}
-\end{itemize}
-\[\lambda=(0,1,2,4,3,5,6,7)\]
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{Beispiel: Ablauf des SSGS}
-\begin{center}
-\includegraphics<1>[page=1, scale=0.68]{images/ssgs.pdf}
-\includegraphics<2>[page=2, scale=0.68]{images/ssgs.pdf}
-\includegraphics<3>[page=3, scale=0.68]{images/ssgs.pdf}
-\includegraphics<4>[page=4, scale=0.68]{images/ssgs.pdf}
-\includegraphics<5>[page=7, scale=0.68]{images/ssgs.pdf}\\
-$\lambda=(0,\textbf<1>{1},\textbf<2>{2},\textbf<3>{4},\textbf<4>{3},5,6,7)$
-\only<5>{
-\\[1mm]
-\begin{small}
-\textbf{Problem 1:} SSGS nur bei gegebenen Kapazitäten anwendbar
-\end{small}
-}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Bestimmung Aktivitätenliste $\lambda$}
-\begin{itemize}
-\item[] \textbf{Problem 2:}\\Lösungsgüte von Aktivitätenliste $\lambda$ abhängig\\[6mm]
-
-\item Vollständige Enumeration topologischer Sortierungen nicht handhabbar\\
-$\rightarrow$ Suchraum mit Metaheuristik erkunden\\[6mm]
-\item Erster Kandidat: Genetischer Algorithmus
-\begin{itemize}
-\item {\footnotesize 3 der Top 5 RCPSP-Heuristiken nach \cite{Kolisch2006}}
-\item {\footnotesize Kann Problem 1 und 2 lösen}
-\end{itemize}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -150,8 +85,8 @@ Repräsentationen im Überblick
 	Individuum & Planerzeugung\\
 	\hline
 	$(\lambda)$ & Vervollständigung jeder Alternative ohne ZK\\	
-	$(\lambda|\tau)$& Startzeit beliebig in Zeitfenster $\tau \in [0,1)$\\
-	$(\lambda|\beta)$& Startzeit an Zeitfensterrand $\beta \in \{0,1\}$\\
+	$(\lambda|\tau)$& Startzeit beliebig in Zeitfenster\\
+	$(\lambda|\beta)$& Startzeit an Zeitfensterrand\\
 	\end{tabular}
 	\end{small}\\[4mm]
 	
@@ -171,7 +106,7 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Vervollständigung ohne ZK $(\lambda)$}
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
 \end{frame}
@@ -214,7 +149,7 @@ Repräsentationen im Überblick
 		\only<5>{
 			Inkrementiere\\
 			AG 2 mit $ST_2=3$ einplanen.\\
-			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = \frac{3}{4}\mbox{ GE} - \frac{1}{2}\mbox{ GE} = \frac{1}{4}\mbox{ GE}$
+			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 0{,}75\mbox{ GE} - 0{,}5\mbox{ GE} = 0{,}25\mbox{ GE}$
 		}
 		
 		\only<6>{
@@ -226,7 +161,7 @@ Repräsentationen im Überblick
 		\only<7>{
 			Bester Kandidat für Einplanungszeitpunkt\\
 			AG 2 mit $ST_4=3$ einplanen.\\
-			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = \frac{3}{4}\mbox{ GE} - \frac{1}{2}\mbox{ GE} = \frac{1}{4}\mbox{ GE}$
+			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 0{,}75\mbox{ GE} - 0{,}5\mbox{ GE} = 0{,}25\mbox{ GE}$
 		}
 	\end{center}
 \end{frame}
@@ -245,7 +180,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & Neighborhood Swap\tabularnewline
 				\hline 
-				Fitness & DB von Plan erzeugt durch SSGS-OC\tabularnewline
+				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -255,7 +190,7 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Wahl in Zeitfenster $(\lambda|\tau)$}
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
 \end{frame}
@@ -277,13 +212,13 @@ Repräsentationen im Überblick
 				\hline 
 				Individuum & $\begin{pmatrix}\lambda\\\tau\end{pmatrix}=\begin{pmatrix}0,1,3,5,2,4,6,7\\0,0.3,0.5,0.8,0.9,0.2,0.1,0.2\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\tau_j=\mbox{rand} \in [0, 1) \; \forall j$\tabularnewline
+				Initialpopulation & $\tau_j=$ Zufallszahl aus $[0, 1) \; \forall j$\tabularnewline
 				\hline 
 				Rekombination & Gemeinsamer OPC mit $\lambda$\tabularnewline
 				\hline 
-				Mutation & $\tau_j=\mbox{rand } \in [0,1)$ mit $P_{mutate}$\tabularnewline
+				Mutation & $\tau_j=$ Zufallszahl aus $[0,1)$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -293,23 +228,21 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Zeitfenstergrenzen $(\lambda|\beta)$}
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
 \end{frame}
 
 \begin{frame}
-	\frametitle{Planerzeugung $(\lambda|\beta)$: untere Einplanung}
+	\frametitle{Planerzeugung $(\lambda|\beta)$: \only<1-2>{untere}\only<3-6>{obere} Einplanung}
+	
 	\includegraphics<1>[page=1, scale=0.75]{images/SSGSbetaLower.pdf}
 	\includegraphics<2>[page=2, scale=0.75]{images/SSGSbetaLower.pdf}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Planerzeugung $(\lambda|\beta)$: obere Einplanung}
-	\includegraphics<1>[page=1, scale=0.75]{images/SSGSbetaUpper.pdf}
-	\includegraphics<2>[page=2, scale=0.75]{images/SSGSbetaUpper.pdf}
-	\includegraphics<3>[page=3, scale=0.75]{images/SSGSbetaUpper.pdf}
-	\includegraphics<4>[page=4, scale=0.75]{images/SSGSbetaUpper.pdf}
+		
+	\includegraphics<3>[page=1, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<4>[page=2, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<5>[page=3, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<6>[page=4, scale=0.75]{images/SSGSbetaUpper.pdf}
 \end{frame}
 
 \begin{frame}
@@ -342,13 +275,13 @@ Repräsentationen im Überblick
 				\hline 
 				Individuum & $\begin{pmatrix}\lambda\\\beta\end{pmatrix}=\begin{pmatrix}0,1,3,5,2,4,6,7\\0,1,1,0,1,0,1,0\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\beta_i=\mbox{rand} \in \{0,1\} \; \forall i \in \mathcal{J}$\tabularnewline
+				Initialpopulation & $\beta_i=$ Zufallszahl aus $\{0,1\} \; \forall i \in \mathcal{J}$\tabularnewline
 				\hline 
 				Rekombination & One Point Crossover\tabularnewline
 				\hline 
 				Mutation & $\beta_i=\neg \beta_i$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -358,7 +291,7 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Ressourcenprofil $(\lambda|z_{rt})$}
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
 \end{frame}
@@ -377,13 +310,13 @@ Repräsentationen im Überblick
 				\hline 
 				Individuum & $(\lambda|\tilde{z}_{rt})=(0,1,3,5,2,4,6,7|\begin{pmatrix} 0 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\tilde{z}_{rt}=\mbox{rand} \in \{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
+				Initialpopulation & $\tilde{z}_{rt}=$ Zufallszahl aus $\{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
 				\hline 
 				Rekombination & One Point Crossover\tabularnewline
 				\hline 
-				Mutation & $\tilde{z}_{rt}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
+				Mutation & $\tilde{z}_{rt}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -393,7 +326,7 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Feste Kapazität $(\lambda|z_{r})$}
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
 \end{frame}
@@ -413,13 +346,13 @@ Repräsentationen im Überblick
 				\hline 
 				Individuum & $(\lambda|\tilde{z}_{r})=(0,1,3,5,2,4,6,7|0,2,2,0,3,0,\ldots)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\tilde{z}_{r}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}\} \; \forall r$\tabularnewline
+				Initialpopulation & $\tilde{z}_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\} \; \forall r$\tabularnewline
 				\hline 
 				Rekombination & One Point Crossover\tabularnewline
 				\hline 
-				Mutation & $\tilde{z}_{r}=\mbox{rand} \in \{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
+				Mutation & $\tilde{z}_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & DB von Plan erzeugt durch SSGS\tabularnewline
+				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
 				\hline
 			\end{tabular}
 		\end{center}
@@ -429,7 +362,7 @@ Repräsentationen im Überblick
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Numerische Ergebnisse}
-\begin{frame}
+\begin{frame}[noframenumbering]
 \frametitle{Gliederung}
 \tableofcontents[current, hidesubsections]
 \end{frame}
@@ -438,11 +371,16 @@ Repräsentationen im Überblick
 \begin{frame}[t]
 \frametitle{Numerische Ergebnisse}
 \begin{footnotesize}
-\textbf{Parameter:} Populationsgröße$=80$, $P_{mutate}=5\%$\\
-\textbf{Testinstanzen:} PSPLIB\\
-j30: 199 optimal in $<$2 Stunden lösbare kapazitätsbeschränkte Projekte, Zeitlimit $=1s$\\
-j120: 600 Projekte, Zeitlimit $=15s$\\[3mm]
-Deckungsbeiträge $\geq 0$ aufgrund $T^{\mbox{max}}$-Wahl in $u_t$ $\implies$ Rationalskaliert
+\textbf{Parameter:} Populationsgröße $=80$, $P_{mutate}=5\%$\\
+
+\begin{center}
+	\begin{tabular}{ccc}
+		\multicolumn{3}{c}{\textbf{Testinstanzen}}\\
+		Datensatz & \#Projekte & Zeitlimit\\
+		j30 & 199 & $1s$\\
+		j120 & 586 & $15s$
+	\end{tabular}
+\end{center}
 
 \begin{center}	
 \tabcolsep=0.16cm
@@ -468,13 +406,15 @@ Deckungsbeiträge $\geq 0$ aufgrund $T^{\mbox{max}}$-Wahl in $u_t$ $\implies$ Ra
 \end{tabular}
 \end{center}
 
+Deckungsbeiträge $\geq 0$ aufgrund von $u_t$-Definition $\implies$ Rationalskaliert
+
 \end{footnotesize}	
 
 \end{frame}
 
 \section{Ausblick}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 \frametitle{Gliederung}
 \tableofcontents[current, hidesubsections]
 \end{frame}
@@ -482,26 +422,18 @@ Deckungsbeiträge $\geq 0$ aufgrund $T^{\mbox{max}}$-Wahl in $u_t$ $\implies$ Ra
 \begin{frame}
 \frametitle{Ausblick}
 \begin{itemize}
-\item Heuristische Methoden
+\item Verbesserung der Genetischen Algorithmen
 	\begin{itemize}
-	\item Techniken führender RCPSP-Heuristiken
-		\begin{itemize}
-		\item Vorwärts-Rückwärts-Verbesserung
-		\item Peak-Crossover
-		\item Zweite Suchphase in Nachbarschaft
-		\end{itemize}
-	\item Stellschrauben im GA: $N^G$, $N^I$, $P_{mutate}$\\[4mm]
+	\item Stellschrauben $N^G$, $N^I$, $P_{mutate}$
+	\item Anpassung von Mutation und Crossover\\[6mm]
 	\end{itemize}
-	
-\item Exakte Methoden
-	\begin{itemize}\item Problemspezifischer Branch\&Bound-Algorithmus\\[4mm]\end{itemize}
-	
-\item Problemgeneralisierung
+\item Techniken führender RCPSP-Heuristiken
 	\begin{itemize}
-	\item Zeitabhängige Ressourcenbelastungen $k_{jr\tau}$
-	\item Mehr-Modus-Fall
-	\item Flexible Projekte
+	\item Vorwärts-Rückwärts-Verbesserung
+	\item Fitnessbasierte Paarbildung und Crossover
+	\item Zweite Suchphase in Nachbarschaft\\[6mm]
 	\end{itemize}
+\item Problemspezifischer B\&B-Algorithmus
 \end{itemize}
 \end{frame}
 

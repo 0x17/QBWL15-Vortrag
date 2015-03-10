@@ -9,6 +9,32 @@ Backup-Folien
 \vfill
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[noframenumbering]
+	\frametitle{Konzeptionelles Modell: RCPSP\only<2>{-OC}}
+	\begin{small}
+		\begin{itemize}
+			\item Zielfunktion \only<1>{\[\mbox{min } FT_J \textcolor{white}{- \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r z_{rt}} \]\\[4.5mm]}\only<2>{\textcolor{red}{\[\mbox{max } u_{FT_J} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r z_{rt}\]}}
+			\item Reihenfolgerestriktionen \[FT_i + d_i \leq FT_j \quad\quad\quad\quad j \in \mathcal{J}, i \in \mathcal{P}_j\]
+			\item Kapazitätsrestriktionen \[\sum_{j \in \mathcal{S}_t} k_{jr} \leq K_r\only<1>{\textcolor{white}{+ z_{rt}}}\only<2>{\textcolor{red}{+ z_{rt}}} \quad\quad\quad\; r \in \mathcal{R}, t \in \mathcal{T} \]
+			\[\mathcal{S}_t = \{j\;|\;(FT_j-d_j) < t \leq FT_j\}\]
+			\item<2> Obere Schranke für Zusatzkapazität \textcolor{red}{\[z_{rt} \leq \overline{z}_r \quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, t \in \mathcal{T}\]}
+		\end{itemize}
+	\end{small}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t, noframenumbering]
+	\frametitle{Ressoucenbeschränkte Projektplanung\\mit Zusatzkapazitäten (RCPSP-OC)}
+	\begin{center}
+		\includegraphics<1>[page=1, scale=0.75]{images/RCPSPOCDiagram.pdf}
+		\includegraphics<2>[page=2, scale=0.75]{images/RCPSPOCDiagram.pdf}
+		\includegraphics<3>[page=3, scale=0.75]{images/RCPSPOCDiagram.pdf}
+	\end{center}
+\end{frame}
+
 \begin{frame}[noframenumbering]
 \frametitle{Entscheidungsmodell: RCPSP\only<2>{-OC}}
 \begin{footnotesize}
@@ -61,6 +87,66 @@ Backup-Folien
 \end{itemize}
 \end{itemize}
 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[noframenumbering]
+	\frametitle{Notwendigkeit heuristischer Lösung}
+	\begin{itemize}
+		\item RCPSP ist $\mathcal{NP}$-schweres Problem
+		\item und RCPSP $\preceq_p$ RCPSP-OC: $\overline{z}_{r}=0, u_t=-t$
+		\item[] $\implies$ RCPSP-OC ist $\mathcal{NP}$-schweres Problem\\[10mm]
+		\item Exakte Lösungsverfahren für praxisnahe Problemgrößen nicht handhabbar
+		\item[] $\implies$ Heuristik
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Motivation zur Verwendung eines seriellen Schedule Generation Scheme (SSGS)}
+	\begin{itemize}
+		\item Dominierende Heuristiken in Untersuchung von RCPSP-Heuristiken durch {\footnotesize \cite{Kolisch2006}}:\\[6mm] Metaheuristiken basierend auf
+		\begin{itemize}
+			\item Seriellem Schedule Generation Scheme (SSGS)
+			\item Aktivitätenlistenrepräsentation, zum Beispiel:
+		\end{itemize}
+	\end{itemize}
+	\[\lambda=(0,1,2,4,3,5,6,7)\]
+\end{frame}
+
+\begin{frame}[t,noframenumbering]
+	\frametitle{Ablauf des SSGS}
+	\begin{center}
+		\includegraphics<1>[page=1, scale=0.68]{images/ShortSSGS.pdf}
+		\includegraphics<2>[page=2, scale=0.68]{images/ShortSSGS.pdf}
+		\includegraphics<3>[page=3, scale=0.68]{images/ShortSSGS.pdf}
+		\includegraphics<4>[page=4, scale=0.68]{images/ShortSSGS.pdf}
+		\includegraphics<5>[page=5, scale=0.68]{images/ShortSSGS.pdf}\\
+		$\lambda=(0,2,4,\textbf<1-4>{1},3,5,6,7)$
+		\only<5>{
+			\\[1mm]
+			\begin{small}
+				\textbf{Problem 1:} SSGS nur bei gegebenen Kapazitäten anwendbar
+			\end{small}
+		}
+	\end{center}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Bestimmung Aktivitätenliste $\lambda$}
+	\begin{itemize}
+		\item[] \textbf{Problem 2:}\\Lösungsgüte von Aktivitätenliste $\lambda$ abhängig\\[6mm]
+		
+		\item Es gibt für jedes Projekt $\lambda$ für kürzesten Plan
+		\item Vollständige Enumeration topologischer Sortierungen nicht handhabbar\\
+		$\rightarrow$ Suchraum mit Metaheuristik erkunden\\[6mm]
+		\item Erster Kandidat: Genetischer Algorithmus
+		\begin{itemize}
+			\item {\footnotesize 3 der Top 5 RCPSP-Heuristiken nach \cite{Kolisch2006}}
+			\item {\footnotesize Kann Problem 1 und 2 lösen}
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

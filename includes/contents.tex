@@ -114,13 +114,13 @@ Repräsentationen im Überblick
 \begin{frame}[t]
 	\frametitle{Planerzeugung $(\lambda)$: Einplanung AG 2}
 	\begin{center}
-		\includegraphics<1>[page=1, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<2>[page=2, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<3>[page=3, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<4>[page=4, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<5>[page=5, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<6>[page=6, scale=0.65]{images/ssgsoc.pdf}
-		\includegraphics<7>[page=5, scale=0.65]{images/ssgsoc.pdf}\\
+		\includegraphics<1>[page=1, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<2>[page=2, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<3>[page=3, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<4>[page=4, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<5>[page=5, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<6>[page=6, scale=0.73]{images/ssgsoc.pdf}
+		\includegraphics<7>[page=5, scale=0.73]{images/ssgsoc.pdf}\\
 		
 		\only<1>{
 			Bisher Arbeitsgang 1 eingeplant.
@@ -129,39 +129,33 @@ Repräsentationen im Überblick
 		
 		\only<2>{
 			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-			AG 2 mit $ST_2=\underline{t}=1$ einplanen.
 			%\vspace*{15mm}
 			\textcolor{white}{$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r\mbox{z}_{rt} = 1\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$}
 		}
 		
 		\only<3>{
 			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-			AG 2 mit $ST_2=\underline{t}=1$ einplanen.\\
-			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 1\mbox{ GE} - 1\mbox{ GE} = 0\mbox{ GE}$
+			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<4>{
 			Inkrementiere\\
-			AG 2 mit $ST_2=2$ einplanen.\\
-			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 1\mbox{ GE} - 1\mbox{ GE} = 0\mbox{ GE}$
+			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<5>{
 			Inkrementiere\\
-			AG 2 mit $ST_2=3$ einplanen.\\
-			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 0{,}75\mbox{ GE} - 0{,}5\mbox{ GE} = 0{,}25\mbox{ GE}$
+			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
 		}
 		
 		\only<6>{
 			Früheste Ressourcenzulässigkeit $\overline{t}$\\
-			AG 2 mit $ST_4=\overline{t}=4$ einplanen.\\
 			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 0\mbox{ GE} - 0\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<7>{
 			Bester Kandidat für Einplanungszeitpunkt\\
-			AG 2 mit $ST_4=3$ einplanen.\\
-			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 0{,}75\mbox{ GE} - 0{,}5\mbox{ GE} = 0{,}25\mbox{ GE}$
+			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
 		}
 	\end{center}
 \end{frame}
@@ -180,7 +174,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & Neighborhood Swap\tabularnewline
 				\hline 
-				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -218,7 +212,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & $\tau_j=$ Zufallszahl aus $[0,1)$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -281,7 +275,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & $\beta_i=\neg \beta_i$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -316,7 +310,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & $\tilde{z}_{rt}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline 
 			\end{tabular}
 		\end{center}
@@ -352,7 +346,7 @@ Repräsentationen im Überblick
 				\hline 
 				Mutation & $\tilde{z}_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
 				\hline 
-				Fitness & Deckungsbeitrag von induziertem Plan\tabularnewline
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline
 			\end{tabular}
 		\end{center}
@@ -406,7 +400,7 @@ Repräsentationen im Überblick
 \end{tabular}
 \end{center}
 
-Deckungsbeiträge $\geq 0$ aufgrund von $u_t$-Definition $\implies$ Rationalskaliert
+$u_t$-Definition setzt minimal erreichbaren Deckungsbeitrag auf 0 $\implies$ Rationalskaliert
 
 \end{footnotesize}	
 
@@ -424,7 +418,7 @@ Deckungsbeiträge $\geq 0$ aufgrund von $u_t$-Definition $\implies$ Rationalskal
 \begin{itemize}
 \item Verbesserung der Genetischen Algorithmen
 	\begin{itemize}
-	\item Stellschrauben $N^G$, $N^I$, $P_{mutate}$
+	\item Stellschrauben: $P_{mutate}$, Populationsgröße, Zeitlimits
 	\item Anpassung von Mutation und Crossover\\[6mm]
 	\end{itemize}
 \item Techniken führender RCPSP-Heuristiken

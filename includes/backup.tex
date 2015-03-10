@@ -212,6 +212,41 @@ bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, soda
 	\end{itemize}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Ressourcenprofil $(\lambda|z_{rt})$}
+\begin{frame}[noframenumbering]
+	\frametitle{Gliederung}
+	\tableofcontents[currentsubsection]
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Planerzeugung $(\lambda|z_{rt})$: Einplanung AG 2}
+	\includegraphics<1>[page=1, scale=0.75]{images/SSGSzrt.pdf}
+	\includegraphics<2>[page=2, scale=0.75]{images/SSGSzrt.pdf}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Genetischer Algorithmus $(\lambda|z_{rt})$}
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $(\lambda|z_{rt})=(0,1,3,5,2,4,6,7|\begin{pmatrix} 0 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & $z_{rt}=$ Zufallszahl aus $\{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
+				\hline 
+				Rekombination & One Point Crossover\tabularnewline
+				\hline 
+				Mutation & $z_{rt}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
+				\hline 
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
+				\hline 
+			\end{tabular}
+		\end{center}
+	\end{small}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section{Problembibliothek}
@@ -293,7 +328,53 @@ bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, soda
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[noframenumbering]
+\begin{frame}
+	\frametitle{Numerische Ergebnisse (Detailliert)}
+	\begin{footnotesize}
+		\textbf{Parameter:} Populationsgröße $=80$, $P_{mutate}=5\%$\\
+		
+		\begin{center}
+			\begin{tabular}{ccc}
+				\multicolumn{3}{c}{\textbf{Testinstanzen}}\\
+				Datensatz & \#Projekte & Zeitlimit\\
+				j30 & 199 & $1s$\\
+				j120 & 586 & $15s$
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}	
+			\tabcolsep=0.16cm
+			\begin{tabular}{|c|rrrc|rrrc|}
+				\hline
+				& \multicolumn{4}{c|}{j30} & \multicolumn{4}{c|}{j120}\\
+				& $\varnothing$ Gap & $\overline{\mbox{Gap}}$ & Opt & $\varnothing$ Rang & $\varnothing$ Gap & $\overline{\mbox{Gap}}$ & BBL & $\varnothing$ Rang \\[3pt]
+				\hline
+				$(\lambda|z_{rt})$&1.41\%&\textbf{8.83\%}&46.73\%&1.98&1.91\%&12.38\%&21.20\%&3.63\\
+				\hline
+				$(\lambda|z_r)$&3.01\%&45.00\%&28.64\%&2.60&\textbf{0.95\%}&\textbf{8.30\%}&\textbf{52.14\%}&\textbf{2.19}\\
+				\hline
+				$(\lambda|\beta)$&2.80\%&45.00\%&29.65\%&2.37&1.61\%&8.31\%&25.98\%&2.97\\
+				best & \multicolumn{4}{c|}{AG, Gem. OPC, oberes SGS} & \multicolumn{4}{c|}{Liste, Gem. OPC, unteres SGS}\\
+				\hline
+				$(\lambda|\beta)$&5.27\%&45.00\%&21.11\%&4.39&11.76\%&28.25\%&8.55\%&9.56\\
+				worst & \multicolumn{4}{c|}{Liste, Getr. OPCs, oberes SGS} & \multicolumn{4}{c|}{Liste, Getr. OPCs, oberes SGS}\\
+				\hline
+				$(\lambda|\tau)$&2.45\%&20.23\%&41.21\%&2.98&4.48\%&14.17\%&2.56\%&6.08\\
+				\hline
+				$(\lambda)$& \textbf{1.20\%}&14.29\%&\textbf{52.76\%}&\textbf{1.78}&5.04\%&19.18\%&27.52\%&5.40\\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		Erlösfunktion setzt minimal erreichbaren Deckungsbeitrag auf 0 $\implies$ Rationalskaliert
+		
+	\end{footnotesize}	
+	
+\end{frame}
+
+
+
+\begin{frame}
 \frametitle{Konvergenzverhalten}
 \includegraphics<1>[page=1, scale=0.69]{images/Convergence3011_7.pdf}
 \end{frame}

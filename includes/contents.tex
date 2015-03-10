@@ -17,10 +17,10 @@
 Projektdauerminimale Einplanung von Arbeitsgängen $j$ mit gegebenen
 \begin{itemize}
 \itemsep0em
-\item Dauern $d_j$
-\item Ressourcenbelastungen $k_{jr}$
-\item Reihenfolgebeziehungen $i \in \mathcal{P}_j$
-\item Kapazitätsrestriktionen $K_r$
+\item Dauern
+\item Ressourcenbelastungen
+\item Reihenfolgebeziehungen
+\item Kapazitätsrestriktionen
 \end{itemize}
 }
 \end{frame}
@@ -58,9 +58,9 @@ $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 		Deckungsbeitragsmaximale Einplanung von Arbeitsgängen mit zusätzlich gegebenen
 		\begin{itemize}
 			\itemsep0em
-			\item Zusatzkapazitätskostensätzen $\kappa_r$			
-			\item Oberen Schranken für Zusatzkapazität $\overline{z}_r$
-			\item Projektdauerabhängigen Erlösen $u_t$
+			\item Zusatzkapazitätskostensätzen
+			\item Oberen Schranken für Zusatzkapazität
+			\item Projektdauerabhängigen Erlösen
 		\end{itemize}
 	}
 \end{frame}
@@ -96,8 +96,8 @@ Repräsentationen im Überblick
 			\hline
 			Individuum & Planerzeugung\\
 			\hline
-			$(\lambda|\tilde{z}_{rt})$ & Kapazität entspricht $K_r+z_{rt}$ mit $z_{rt} \leq \tilde{z}_{rt}$ \\
-			$(\lambda|\tilde{z}_r)$ & Kapazität entspricht $K_r+z_r$ mit $z_{rt} \leq \tilde{z}_{r}$\\
+			$(\lambda|z_{rt})$ & Kapazität entspricht $K_r+z_{rt}$\\
+			$(\lambda|z_r)$ & Kapazität entspricht $K_r+z_{r}$\\
 		\end{tabular}
 	\end{small}
 \end{itemize}
@@ -124,38 +124,37 @@ Repräsentationen im Überblick
 		
 		\only<1>{
 			Bisher Arbeitsgang 1 eingeplant.
-			\vspace*{12.5mm}
+			\textcolor{white}{$\mbox{DB} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$}
 		}
 		
 		\only<2>{
 			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-			%\vspace*{15mm}
-			\textcolor{white}{$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r\mbox{z}_{rt} = 1\mbox{ GE} - 4\mbox{ GE} = 3\mbox{ GE}$}
+			\textcolor{white}{$\mbox{DB} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$}
 		}
 		
 		\only<3>{
 			Früheste Reihenfolgezulässigkeit $\underline{t}$\\
-			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
+			$\mbox{DB} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<4>{
 			Inkrementiere\\
-			$\mbox{DB} = u_{8}-\sum_r \sum_t \kappa_r z_{rt} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
+			$\mbox{DB} = 20\mbox{ GE} - 20\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<5>{
 			Inkrementiere\\
-			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
+			$\mbox{DB} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
 		}
 		
 		\only<6>{
 			Früheste Ressourcenzulässigkeit $\overline{t}$\\
-			$\mbox{DB} = u_{10}-\sum_r \sum_t \kappa_r z_{rt} = 0\mbox{ GE} - 0\mbox{ GE} = 0\mbox{ GE}$
+			$\mbox{DB} = 0\mbox{ GE} - 0\mbox{ GE} = 0\mbox{ GE}$
 		}
 		
 		\only<7>{
 			Bester Kandidat für Einplanungszeitpunkt\\
-			$\mbox{DB} = u_{9}-\sum_r \sum_t \kappa_r z_{rt} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
+			$\mbox{DB} = 15\mbox{ GE} - 10\mbox{ GE} = 5\mbox{ GE}$
 		}
 	\end{center}
 \end{frame}
@@ -190,7 +189,7 @@ Repräsentationen im Überblick
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Planerzeugung $(\lambda|\tau)$: Einplanung von 2}
+	\frametitle{Planerzeugung $(\lambda|\tau)$: Einplanung AG 2}
 	\includegraphics<1-2>[page=1, scale=0.7]{images/ssgstau.pdf}
 	\includegraphics<3>[page=2, scale=0.7]{images/ssgstau.pdf}
 	\only<1>{\[ ST_2 = \overline{t} - [ (\overline{t}-\underline{t}) \cdot \tau ] \]}
@@ -291,7 +290,7 @@ Repräsentationen im Überblick
 \end{frame}
 
 \begin{frame}
-	\frametitle{Planerzeugung $(\lambda|z_{rt})$: Einplanung von 2}
+	\frametitle{Planerzeugung $(\lambda|z_{rt})$: Einplanung AG 2}
 	\includegraphics<1>[page=1, scale=0.75]{images/SSGSzrt.pdf}
 	\includegraphics<2>[page=2, scale=0.75]{images/SSGSzrt.pdf}
 \end{frame}
@@ -302,13 +301,13 @@ Repräsentationen im Überblick
 		\begin{center}
 			\begin{tabular}{rl}
 				\hline 
-				Individuum & $(\lambda|\tilde{z}_{rt})=(0,1,3,5,2,4,6,7|\begin{pmatrix} 0 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				Individuum & $(\lambda|z_{rt})=(0,1,3,5,2,4,6,7|\begin{pmatrix} 0 & 2 & \ldots\\ \vdots & \ddots \end{pmatrix})$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\tilde{z}_{rt}=$ Zufallszahl aus $\{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
+				Initialpopulation & $z_{rt}=$ Zufallszahl aus $\{0,\ldots,\overline{z}_{r}\}\;\forall r,t$\tabularnewline
 				\hline 
 				Rekombination & One Point Crossover\tabularnewline
 				\hline 
-				Mutation & $\tilde{z}_{rt}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
+				Mutation & $z_{rt}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\}$ mit $P_{mutate}$\tabularnewline
 				\hline 
 				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline 
@@ -327,7 +326,7 @@ Repräsentationen im Überblick
 
 
 \begin{frame}
-	\frametitle{Planerzeugung $(\lambda|z_{r})$: Einplanung von 2}
+	\frametitle{Planerzeugung $(\lambda|z_{r})$: Einplanung AG 2}
 	\includegraphics<1>[page=1, scale=0.75]{images/SSGSzr.pdf}
 	\includegraphics<2>[page=2, scale=0.75]{images/SSGSzr.pdf}
 \end{frame}
@@ -338,13 +337,13 @@ Repräsentationen im Überblick
 		\begin{center}
 			\begin{tabular}{rl}
 				\hline 
-				Individuum & $(\lambda|\tilde{z}_{r})=(0,1,3,5,2,4,6,7|0,2,2,0,3,0,\ldots)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				Individuum & $(\lambda|z_{r})=(0,1,3,5,2,4,6,7|0,2,2,0,3,0,\ldots)$\parbox[c][40pt][c]{0pt}{}\tabularnewline
 				\hline 
-				Initialpopulation & $\tilde{z}_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\} \; \forall r$\tabularnewline
+				Initialpopulation & $z_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}\} \; \forall r$\tabularnewline
 				\hline 
 				Rekombination & One Point Crossover\tabularnewline
 				\hline 
-				Mutation & $\tilde{z}_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
+				Mutation & $z_{r}=$ Zufallszahl aus $\{0, \ldots, \overline{z}_{r}$\} mit $P_{mutate}$\tabularnewline
 				\hline 
 				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
 				\hline
@@ -400,7 +399,7 @@ Repräsentationen im Überblick
 \end{tabular}
 \end{center}
 
-$u_t$-Definition setzt minimal erreichbaren Deckungsbeitrag auf 0 $\implies$ Rationalskaliert
+Erlösfunktion setzt minimal erreichbaren Deckungsbeitrag auf 0 $\implies$ Rationalskaliert
 
 \end{footnotesize}	
 

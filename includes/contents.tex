@@ -70,32 +70,276 @@ $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 \begin{frame}
 	\frametitle{Entscheidungsmodell: RCPSP-OC}
 	\begin{footnotesize}
-		\begin{itemize}
-			\item Zielfunktion\\[-7mm]
-			\[
-			\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
-			\]
-			
-			\item Einmalige Durchführung
-			\[
-			\sum_{t=EFT_j}^{LFT_j} x_{jt} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
-			\]
-			
-			\item Reihenfolgerestriktionen
-			\[
-			\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
-			\]
-			
-			\item Kapazitätsrestriktionen
-			\[
-			\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r + z_{rt} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
-			\]
-			
-			\item Obere Schranke für Zusatzkapazität\\[-3mm]
-			\[
-			z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
-			\]
-		\end{itemize}
+		\only<1>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{white}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{white}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{white}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{white}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{white}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<2>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{white}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{white}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{white}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{white}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<3>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{white}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{white}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{white}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<4>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{white}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{white}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<5>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{black}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{white}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<6>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{white}{Zielfunktion\\[-7mm]
+					\[
+					\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{black}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{black}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<7>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{black}{Zielfunktion\\[-7mm]
+					\[
+					\textcolor{white}{\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} -} \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{black}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{black}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<8>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{black}{Zielfunktion\\[-7mm]
+					\[
+					\textcolor{black}{\textcolor{white}{\mbox{max }} \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} -} \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{black}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{black}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
+		\only<9>{
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item[] \textcolor{black}{Zielfunktion\\[-7mm]
+					\[
+					\textcolor{black}{\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} -} \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}
+					\]}
+				
+				\item[] \textcolor{black}{Einmalige Durchführung
+					\[
+					\sum_{t=EFT_j}^{LFT_j} \textcolor{black}{x_{jt}} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+					\]}
+				
+				\item[] \textcolor{black}{Reihenfolgerestriktionen
+					\[
+					\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+					\]}
+				
+				\item[] \textcolor{black}{Kapazitätsrestriktionen
+					\[
+					\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r \textcolor{black}{+ z_{rt}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+				
+				\item[] \textcolor{black}{Obere Schranke für Zusatzkapazität\\[-3mm]
+					\[
+					z_{rt} \leq \overline{z}_r \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+					\]}
+			\end{itemize}
+		}
+		
 	\end{footnotesize}
 \end{frame}
 
@@ -111,19 +355,7 @@ $\Rightarrow$ \= Maximierung des Deckungsbeitrags als Trade-off zwischen\\
 \begin{frame}
 \frametitle{Genetische Algorithmen}
 Repräsentationen im Überblick
-\begin{itemize}
-	\item \small{Startzeit zwischen Reihenfolge- und Ressourcenzulässigkeit}\\[2mm]
-	\begin{small}
-	\begin{tabular}{cp{7.5cm}}
-	\hline
-	Individuum & Planerzeugung\\
-	\hline
-	$(\lambda)$ & Vervollständigung jeder Alternative ohne ZK\\	
-	$(\lambda|\tau)$& Startzeit beliebig in Zeitfenster\\
-	$(\lambda|\beta)$& Startzeit an Zeitfensterrand\\
-	\end{tabular}
-	\end{small}\\[4mm]
-	
+\begin{itemize}	
 	\item \small{Vorbestimmung des Ressourcenprofils}\\[2mm]
 	\begin{small}
 		\begin{tabular}{cp{7.5cm}}
@@ -133,7 +365,19 @@ Repräsentationen im Überblick
 			$(\lambda|z_{rt})$ & Kapazität entspricht $K_r+z_{rt}$\\
 			$(\lambda|z_r)$ & Kapazität entspricht $K_r+z_{r}$\\
 		\end{tabular}
-	\end{small}
+	\end{small}\\[4mm]
+	
+	\item \small{Startzeit zwischen Reihenfolge- und Ressourcenzulässigkeit}\\[2mm]
+	\begin{small}
+		\begin{tabular}{cp{7.5cm}}
+			\hline
+			Individuum & Planerzeugung\\
+			\hline
+			$(\lambda)$ & Heuristische Vervollständigung jeder Alternative\\	
+			$(\lambda|\tau)$& Startzeit beliebig in Zeitfenster\\
+			$(\lambda|\beta)$& Startzeit an Zeitfensterrand\\
+		\end{tabular}
+	\end{small}	
 \end{itemize}
 \end{frame}
 
@@ -175,7 +419,7 @@ Repräsentationen im Überblick
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Vervollständigung ohne ZK $(\lambda)$}
+\subsection{Heuristische Vervollständigung $(\lambda)$}
 \begin{frame}[noframenumbering]
 	\frametitle{Gliederung}
 	\tableofcontents[currentsubsection]
@@ -370,12 +614,38 @@ Repräsentationen im Überblick
 		\multicolumn{3}{c}{\textbf{Testinstanzen}}\\
 		Datensatz & \#Projekte & Zeitlimit\\
 		j30 & 199 & $1s$\\
-		j120 & 586 & $15s$
+		\only<1>{&&}\only<2>{j120 & 586 & $15s$}
 	\end{tabular}
 \end{center}
 
 \begin{center}	
 \tabcolsep=0.16cm
+
+\only<1>{
+	\begin{tabular}{|c|rc|}
+		\hline
+		\rule{0pt}{4mm} & \multicolumn{2}{c|}{j30}\\[1mm]
+		& $\varnothing$ Gap & $\varnothing$ Rang\\[3pt]
+		\hline
+		$(\lambda|z_{rt})$ & 1.41\% & 1.98\\
+		\hline
+		$(\lambda|z_r)$ & 3.01\% & 2.60\\
+		\hline
+		$(\lambda|\beta)$ & 2.80\% & 2.37\\
+		best & &\\
+		\hline
+		$(\lambda|\beta)$&5.27\% & 4.39\\
+		worst & &\\
+		\hline
+		$(\lambda|\tau)$&2.45\% & 2.98\\
+		\hline
+		$(\lambda)$& \textbf{1.20\%} &\textbf{1.78}\\
+		\hline
+	\end{tabular}
+	\hspace{26.1mm}
+}
+
+\only<2>{
 \begin{tabular}{|c|rc|rc|}
 	\hline
 	\rule{0pt}{4mm} & \multicolumn{2}{c|}{j30} & \multicolumn{2}{c|}{j120}\\[1mm]
@@ -396,6 +666,10 @@ Repräsentationen im Überblick
 	$(\lambda)$& \textbf{1.20\%} &\textbf{1.78} & 5.04\% & 5.40\\
 	\hline
 \end{tabular}
+}
+
+
+
 \end{center}
 
 Erlösfunktion setzt minimal erreichbaren Deckungsbeitrag auf 0 $\implies$ Rationalskaliert

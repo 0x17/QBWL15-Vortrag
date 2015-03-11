@@ -26,6 +26,40 @@ Backup-Folien
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}[noframenumbering]
+	\frametitle{Entscheidungsmodell: RCPSP\only<2>{-OC}}
+	\begin{footnotesize}
+		\begin{itemize}
+			\item Zielfunktion\\[-7mm]
+			\[
+			\only<1>{\mbox{min } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} t \cdot x_{{J+1},t} \textcolor{white}{\enspace - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}}}\only<2>{\textcolor{red}{\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}}}
+			\]
+			
+			\item Einmalige Durchführung
+			\[
+			\sum_{t=EFT_j}^{LFT_j} x_{jt} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
+			\]
+			
+			\item Reihenfolgerestriktionen
+			\[
+			\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
+			\]
+			
+			\item Kapazitätsrestriktionen
+			\[
+			\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r\only<1>{\textcolor{white}{ + z_{rt}}}\only<2>{ \textcolor{red}{+ z_{rt}}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+			\]
+			
+			\item<2> Obere Schranke für Zusatzkapazität\\[-3mm]
+			\[
+			\textcolor{red}{z_{rt} \leq \overline{z}_r} \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
+			\]
+		\end{itemize}
+	\end{footnotesize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}[t, noframenumbering]
 	\frametitle{Ressoucenbeschränkte Projektplanung\\mit Zusatzkapazitäten (RCPSP-OC)}
 	\begin{center}
@@ -35,39 +69,7 @@ Backup-Folien
 	\end{center}
 \end{frame}
 
-\begin{frame}[noframenumbering]
-\frametitle{Entscheidungsmodell: RCPSP\only<2>{-OC}}
-\begin{footnotesize}
-\begin{itemize}
-\item Zielfunktion\\[-7mm]
-\[
-		\only<1>{\mbox{min } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} t \cdot x_{{J+1},t} \textcolor{white}{\enspace - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}}}\only<2>{\textcolor{red}{\mbox{max } \sum_{t=EFT_{J+1}}^{LFT_{J+1}} u_t \cdot x_{{J+1},t} - \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \kappa_r \cdot z_{rt}}}
-\]
-
-\item Einmalige Durchführung
-\[
-\sum_{t=EFT_j}^{LFT_j} x_{jt} = 1 \,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad j \in \mathcal{J}\textcolor{white}{, t \in \mathcal{T}}
-\]
-
-\item Reihenfolgerestriktionen
-\[
-\sum_{t=EFT_i}^{LFT_i} x_{it} \cdot t \leq \sum_{t=EFT_j}^{LFT_j} x_{jt} \cdot t - d_j \,\,\:\:\:\quad\quad\quad j \in \mathcal{J}, \; i \in \mathcal{P}_j
-\]
-
-\item Kapazitätsrestriktionen
-\[
-\sum_{j=1}^{J} \sum_{\tau=t}^{t+d_j-1} k_{jr} \cdot x_{j\tau} \leq K_r\only<1>{\textcolor{white}{ + z_{rt}}}\only<2>{ \textcolor{red}{+ z_{rt}}} \,\,\:\:\:\:\:\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
-\]
-
-\item<2> Obere Schranke für Zusatzkapazität\\[-3mm]
-\[
-\textcolor{red}{z_{rt} \leq \overline{z}_r} \,\;\;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad r \in \mathcal{R}, \; t \in \mathcal{T}
-\]
-\end{itemize}
-\end{footnotesize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[noframenumbering]
 \frametitle{Verwandte Probleme aus der Literatur}
@@ -179,46 +181,13 @@ Backup-Folien
 }
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[noframenumbering]
-\frametitle{Entscheidung über ZK in SGS einbauen}
-\begin{itemize}
-\item Bei Einplanung von AG $j$ Zeitfenster zwischen
-	\begin{itemize}
-	\item Reihenfolgezulässigkeit $\underline{t}$ und
-	\item Ressourcenzulässigkeit $\overline{t}$
-	\end{itemize}
-bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, sodass ZK-Grenzen $\overline{z}_r$ eingehalten werden\\[8mm]
-\item Zwei Varianten
-\begin{enumerate}
-	\item Auswahl durch GA 
-	\item Teilplanvervollständigung mit SGS ohne ZK
-	\end{enumerate}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[noframenumbering]
-	\frametitle{Ablauf Teilplanvervollständigung}
-	Bei Einplanung von AG $j$:
-	\vspace*{2mm}
-	\begin{itemize}
-		\item Für alle Perioden $t$ zwischen Reihenfolgezulässigkeit und Ressourcenzulässigkeit von AG $j$:
-		\begin{itemize}
-			\item Vervollständigung des Teilplans mit $ST_j=t$ und SSGS ohne Zusatzkapazität
-			\item Bestimmung des Deckungsbeitrags\\[3mm]
-		\end{itemize}
-		\item Setze Startzeit von AG $j$ auf Periode, bei der vervollständigter Plan den Deckungsbeitrag maximiert
-	\end{itemize}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Ressourcenprofil $(\lambda|z_{rt})$}
-\begin{frame}[noframenumbering]
-	\frametitle{Gliederung}
-	\tableofcontents[currentsubsection]
-\end{frame}
+%\subsection{Ressourcenprofil $(\lambda|z_{rt})$}
+%\begin{frame}[noframenumbering]
+%	\frametitle{Gliederung}
+%	\tableofcontents[currentsubsection]
+%\end{frame}
 
 \begin{frame}[noframenumbering]
 	\frametitle{Planerzeugung $(\lambda|z_{rt})$: Einplanung AG 2}
@@ -248,6 +217,39 @@ bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, soda
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[noframenumbering]
+	\frametitle{Entscheidung über ZK in SGS einbauen}
+	\begin{itemize}
+		\item Bei Einplanung von AG $j$ Zeitfenster zwischen
+		\begin{itemize}
+			\item Reihenfolgezulässigkeit $\underline{t}$ und
+			\item Ressourcenzulässigkeit $\overline{t}$
+		\end{itemize}
+		bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, sodass ZK-Grenzen $\overline{z}_r$ eingehalten werden\\[8mm]
+		\item Zwei Varianten
+		\begin{enumerate}
+			\item Auswahl durch GA 
+			\item Teilplanvervollständigung mit SGS ohne ZK
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Ablauf Teilplanvervollständigung}
+	Bei Einplanung von AG $j$:
+	\vspace*{2mm}
+	\begin{itemize}
+		\item Für alle Perioden $t$ zwischen Reihenfolgezulässigkeit und Ressourcenzulässigkeit von AG $j$:
+		\begin{itemize}
+			\item Vervollständigung des Teilplans mit $ST_j=t$ und SSGS ohne Zusatzkapazität
+			\item Bestimmung des Deckungsbeitrags\\[3mm]
+		\end{itemize}
+		\item Setze Startzeit von AG $j$ auf Periode, bei der vervollständigter Plan den Deckungsbeitrag maximiert
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section{Problembibliothek}
 %\begin{frame}[noframenumbering]
@@ -328,7 +330,7 @@ bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, soda
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Numerische Ergebnisse (Detailliert)}
 	\begin{footnotesize}
 		\textbf{Parameter:} Populationsgröße $=80$, $P_{mutate}=5\%$\\
@@ -372,9 +374,7 @@ bestimmen und $ST_j \in \{ \underline{t}, \ldots, \overline{t} \}$ wählen, soda
 	
 \end{frame}
 
-
-
-\begin{frame}
+\begin{frame}[noframenumbering]
 \frametitle{Konvergenzverhalten}
 \includegraphics<1>[page=1, scale=0.69]{images/Convergence3011_7.pdf}
 \end{frame}

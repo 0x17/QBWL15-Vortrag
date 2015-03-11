@@ -216,6 +216,69 @@ Backup-Folien
 	\end{small}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\subsection{Zeitfenstergrenzen $(\lambda|\beta)$}
+%\begin{frame}[noframenumbering]
+%	\frametitle{Gliederung}
+%	\tableofcontents[currentsubsection]
+%\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Planerzeugung $(\lambda|\beta)$: \only<1-2>{untere}\only<3-6>{obere} Einplanung}
+	
+	\includegraphics<1>[page=1, scale=0.75]{images/SSGSbetaLower.pdf}
+	\includegraphics<2>[page=2, scale=0.75]{images/SSGSbetaLower.pdf}
+	
+	\includegraphics<3>[page=1, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<4>[page=2, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<5>[page=3, scale=0.75]{images/SSGSbetaUpper.pdf}
+	\includegraphics<6>[page=4, scale=0.75]{images/SSGSbetaUpper.pdf}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{$(\lambda|\beta)$-Varianten}
+	\begin{itemize}
+		\item Arbeitsgangzuordnung: AG $j=\lambda_i$ nutzt ZK, gdw.
+		\begin{itemize}
+			\item $\beta_i=1$ (Listenposition assoziiert)
+			\item $\beta_j=1$ (AG-Nummer assoziiert)\\[4mm]
+		\end{itemize}
+		\item Einplanungsart
+		\begin{itemize}
+			\item "`von unten"': Nutze erst Normalkapazität
+			\item "`von oben"': Nutze erst Überstunden\\[4mm]
+		\end{itemize}
+		\item Crossover
+		\begin{itemize}
+			\item Gemeinsamer One Point Crossover
+			\item Zwei getrennte One Point Crossovers\\[5mm]
+		\end{itemize}
+		\item[$\implies$] Insgesamt $2 \cdot 2 \cdot 2 = 8$ unterschiedliche Varianten
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Genetischer Algorithmus $(\lambda|\beta)$}
+	\begin{small}
+		\begin{center}
+			\begin{tabular}{rl}
+				\hline 
+				Individuum & $\begin{pmatrix}\lambda\\\beta\end{pmatrix}=\begin{pmatrix}0,1,3,5,2,4,6,7\\0,1,1,0,1,0,1,0\end{pmatrix}$\parbox[c][40pt][c]{0pt}{}\tabularnewline
+				\hline 
+				Initialpopulation & $\beta_i=$ Zufallszahl aus $\{0,1\} \; \forall i \in \mathcal{J}$\tabularnewline
+				\hline 
+				Rekombination & One Point Crossover\tabularnewline
+				\hline 
+				Mutation & $\beta_i=\neg \beta_i$ mit $P_{mutate}$\tabularnewline
+				\hline 
+				Fitness & Deckungsbeitrag von kodiertem Plan\tabularnewline
+				\hline 
+			\end{tabular}
+		\end{center}
+	\end{small}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[noframenumbering]

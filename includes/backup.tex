@@ -164,7 +164,7 @@ Backup-Folien
 \begin{itemize}\item Regret-Based Biased Random Sampling\end{itemize}
 \item Kreuzung
 	\begin{itemize}
-	\item Paarbildung:\\Ziehe zufälliges Paar noch nicht gewählter Individuen\\[4mm]
+	\item Paarbildung:\\Ziehe erstes Elternteil aus 50\% Besten und zweites aus restlichen 50\% noch nicht gewählter Individuen\\[4mm]
 	\item Tochter (Sohn) per One Point Crossover, d.h.:
 	\item[] Übernehme bis zufälliger Stelle $q$ von der Mutter (Vater), Rest in Reihenfolge vom Vater (Mutter)
 	\end{itemize}
@@ -441,3 +441,254 @@ Backup-Folien
 \frametitle{Konvergenzverhalten}
 \includegraphics<1>[page=1, scale=0.69]{images/Convergence3011_7.pdf}
 \end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Allgemeines serielles SGS}
+	\begin{itemize}
+		\item Planerzeugung in $J$ Schritten
+		\begin{itemize}
+			\item Bestimmung von einplanbaren AG\\$\mathcal{D}=\{ j \in \mathcal{J} | (\forall i \in \mathcal{P}_j \colon ST_i \neq \perp) \land ST_j = \perp\}$\\[2mm]
+			\item $j \in \mathcal{D}$ wählen
+			\begin{itemize}
+				\item Prioritätsregel
+				\item Prioritätswerte
+				\item Sampling\\[2mm]
+			\end{itemize}
+			\item $j$ frühstmöglich einplanen
+			\begin{itemize}
+				\item Alle Vorgänger beendet
+				\item Genügend Ressourcenkapazität während Durchführung
+			\end{itemize}
+		\end{itemize}
+		\item Spezialfall: Serielles SGS mit $\lambda$ als Eingabe
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Beispiele für verwendete\\Auswahlverfahren}
+	\begin{itemize}
+		\item Prioritätsregel $LFT, SPT, MIS, MTS, \ldots$\\[4mm]
+		\item Prioritätswerte $v=(0.1, 0.3, \ldots)$\\[4mm]
+		\item Random sampling $p_j=\frac{1}{|\mathcal{D}|}$\\[4mm]
+		\item Sonderfall: Aktivitätsliste $\lambda=(0, 1,2,\ldots)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Regret Based Biased Random Sampling}
+	
+	\begin{itemize}
+		\item Biased random sampling $ p_j = \frac{v_j}{\sum_i v_i} $ \\[5mm]
+		\item Regret value \[r_j = v_j - \min_i v_i\]
+		\item Adjusted regret value \[ r_j^\prime = (r_j + \epsilon)^\alpha \]
+		\item Häufig $\epsilon = \alpha = 1$
+		\item Auswahlwahrscheinlichkeit \[p_j = \frac{r_j^\prime}{\sum_i r_i^\prime} = \frac{v_j - \min_i v_i + 1}{n + \sum_i v_i - \min_k v_k}\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Korrespondenz $\lambda \leftrightarrow $ Ablaufplan}
+	\begin{itemize}
+		\item $ST_j(\lambda)$: AL zu Plan über serielles SGS\\[6mm]
+		\item $\lambda(ST_j)$: Plan zu AL über Vorschrift
+		\begin{itemize}
+			\item $ST_i < ST_j \implies \lambda_i < \lambda_j$
+			\item $ST_i=ST_j \land i < j \implies \lambda_i < \lambda_j$\\[6mm]
+		\end{itemize}
+		\item Beachte: $\lambda(ST_j(\lambda)) \neq \lambda$ möglich
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t,noframenumbering]
+	\frametitle{Beispiel für Startpopulationserzeugung}
+	\only<1>{
+		\begin{center}
+			\includegraphics[scale=1.0]{images/ProjektstrukturStartpopulation.pdf}\\
+			\begin{small}$\mathcal{R}=\{1\}, K_1=4$\end{small}\\[5mm]
+			Probleminstanz
+		\end{center}
+	}
+	\only<2>{
+		\begin{center}
+			Abgeleitete Größen\\[5mm]
+			\begin{tabular}{|c||c|c|c|c|c|c|}
+				\hline 
+				$j$ & 0 & 1 & 2 & 3 & 4 & 5\tabularnewline
+				\hline
+				\hline 
+				$EFT_{j}$ & 0 & 1 & 3 & 5 & 3 & 5\tabularnewline
+				\hline 
+				$LFT_{j}$ & 0 & 3 & 3 & 5 & 5 & 5\tabularnewline
+				\hline 
+				$v_{j}$ & 0 & -3 & -3 & -5 & -5 & -5\tabularnewline
+				\hline 
+				$r_{j}$ & 5 & 2 & 2 & 0 & 0 & 0\tabularnewline
+				\hline 
+				$r_{j}^{\prime}$ & 6 & 3 & 3 & 1 & 1 & 1\tabularnewline
+				\hline
+			\end{tabular}
+			\\[8mm]$v_j = -LFT_j$ und $\epsilon = \alpha = 1$
+		\end{center}
+	}
+	\only<3-9>{
+		\begin{center}
+			\begin{small}
+				\only<3>{
+					\includegraphics[scale=0.75,page=1]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 1:} $ST_j=(\perp, \perp, \perp, \perp, \perp, \perp)$\\$\mathcal{D}=\{0\}, p_1=1 \implies ST_0=0$
+				}
+				
+				\only<4>{
+					\includegraphics[scale=0.75,page=1]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 2:} $ST_j=(0, \perp, \perp, \perp, \perp, \perp)$\\$\mathcal{D}=\{1, 2\}, p_1=p_2=\frac{3}{6}=\frac{1}{2} \implies ST_2=0$
+				}
+				
+				\only<5>{
+					\includegraphics[scale=0.75,page=2]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 3:} $ST_j=(0, \perp, 0, \perp, \perp, \perp)$\\$\mathcal{D}=\{1\}, p_1=1 \implies ST_1=3$
+				}
+				
+				\only<6>{
+					\includegraphics[scale=0.75,page=3]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 4:} $ST_j=(0, 3, 0, \perp, \perp, \perp)$\\$\mathcal{D}=\{3, 4\}, p_3=p_4=\frac{1}{2} \implies ST_4=4$
+				}
+				
+				\only<7>{
+					\includegraphics[scale=0.75,page=4]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 5:} $ST_j=(0, 3, 0, \perp, 4, \perp)$\\$\mathcal{D}=\{3\}, p_3=1 \implies ST_3=4$
+				}
+				
+				\only<8>{
+					\includegraphics[scale=0.75,page=5]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Schritt 6:} $ST_j=(0, 3, 0, 4, 4, \perp)$\\$\mathcal{D}=\{5\}, p_5=1 \implies ST_5=6$
+				}
+				
+				\only<9>{
+					\includegraphics[scale=0.75,page=5]{images/RBBRS-Beispiel.pdf}\\
+					\textbf{Ergebnis:} $ST_j=(0, 3, 0, 4, 4, 6)$ \\ $\implies \lambda = (0, 2, 1, 3, 4, 5)$
+				}
+			\end{small}
+		\end{center}
+	}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Paarbildung}
+	\includegraphics[scale=1.0]{images/Paarbildung.pdf}\\[3mm]
+	\begin{itemize}
+		\item Wähle aus besten 50\% sukzessive 1. Elternteil
+		\item Wähle aus schlechten 50\% zufällig 2. Elternteil
+		\item Jeweils aus Elternpopulation ``streichen''
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Peak Crossover}
+	\begin{itemize}
+		\item \textbf{Grundidee:} Tochter (Sohn) übernimmt Peaks von Mutter (Vater) und restliche AG in Reihenfolge von Vater (Mutter)
+		\item Auslastungsverhältnis in Periode $t$:
+		\[\mbox{RUR}(t)=\frac{1}{|\mathcal{R}|} \sum_{r \in \mathcal{R}} \frac{\sum_{j \in \mathcal{S}(t)} k_{jr}}{K_r}\]
+		\item Intervall $I$ mit hoher Auslastung $\mbox{RUR}(t)\geq \delta \; \forall t \in I$
+		\item $\delta = \mbox{rand} [lthreshold, uthreshold]$
+		\item Peaks $P_1,\ldots,P_q$
+		\begin{itemize}
+			\item $P_k$ enthält durchgeführte Jobs in $I_k$
+			\item Teilsequenzen aus $\lambda$
+			\item Nicht zwangsläufig zusammenhängend
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t,noframenumbering]
+	\frametitle{Beispiel für Peak Crossover}
+	\begin{center}
+		\includegraphics<1>[scale=0.7,page=1]{images/PeakCrossoverExample.pdf}
+		\includegraphics<2>[scale=0.7,page=2]{images/PeakCrossoverExample.pdf}
+		\includegraphics<3>[scale=0.7,page=3]{images/PeakCrossoverExample.pdf}
+		\includegraphics<4>[scale=0.7,page=4]{images/PeakCrossoverExample.pdf}\\[2mm]
+		\only<1>{
+			$\lambda^m=(0, 1, 3, 2, 4, 5, 6, 7, 8, 9, 10)$\\
+			$I_1=\{3, 4, 5\}, I_2=\{7, 8, 9\}$\\
+			$P_1=(3, 2, 4, 5), P_2=(6, 7, 8, 9)$
+		}
+		\only<2>{
+			$\lambda^f=(0, 3, 4, 6, 7, 1, 9, 2, 5, 8, 10)$
+			$I_1=\{1, 2\}, I_2=\{3, 4, 5\}$\\
+			$P_1=(3, 4), P_2=(6, 7, 1, 9)$
+		}
+		\only<3>{
+			$\lambda^d=(0, 3, 2, 4, 5, 1, 6, 7, 8, 9, 10)$
+		}
+		\only<4>{
+			$\lambda^s=(0, 3, 4, 6, 7, 1, 9, 2, 5, 8, 10)$
+		}
+	\end{center}
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+	\frametitle{Vorwärts Rückwärts Verbesserung (FBI)}
+	\begin{itemize}
+		\item Weit verbreitet in führenden RCPSP-Heuristiken 
+		\item Auch als ``Doppeljustierung'' (DJ) bezeichnet\\[5mm]
+		\item \textbf{1. Schritt:} Rückwärts von $J-1$ restliche AG so weit wie möglich nach rechts verschieben
+		\item \textbf{2. Schritt:} Vorwärts von $0$ restliche AG so weit wie möglich nach links verschieben\\[5mm]
+		\item Häufig höhere Auslastung und kürzere Projektdauer
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Beispiel für FBI}
+	\only<1>{
+		\begin{center}
+			\includegraphics[scale=1.0]{images/ProjektstrukturStartpopulation.pdf}\\
+			\begin{small}$\mathcal{R}=\{1\}, K_1=4$\end{small}\\[5mm]
+			Probleminstanz
+		\end{center}
+	}
+	\only<2-4>{
+		\begin{center}
+			\includegraphics<2>[page=1,scale=0.8]{images/FBIBeispiel.pdf}
+			\includegraphics<3>[page=2,scale=0.8]{images/FBIBeispiel.pdf}
+			\includegraphics<4>[page=3,scale=0.8]{images/FBIBeispiel.pdf}\\
+			\only<2>{Ausgangssituation}
+			\only<3>{Rechtsjustierung}
+			\only<4>{Linksjustierung}
+		\end{center}
+	}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Umsetzung FBI mithilfe SGS}
+	\begin{itemize}
+		\item Präzedenz invertieren $\mathcal{P}_j^\prime = \mathcal{P}_j^{-1} = \{ i \in \mathcal{J} | j \in \mathcal{P}_i \}$
+		\item AL drehen $\lambda_j^\prime = \lambda_{J-j}$
+		\item[$\rightarrow$] Rechtsjustierter Plan $ST_j^\prime= ST_j(\mathcal{P}_j^\prime, \lambda_j^\prime)$\\[8mm]
+		\item Plan spiegeln $ST_j^M = ST_0^\prime - (ST_j^\prime + d_j)$
+		\item AL ableiten $\lambda_j^{\prime\prime} = \lambda(ST_j^M)$
+		\item[$\rightarrow$] Linksjustierter Plan $ST_j^{\prime\prime} = S(\lambda_j^{\prime\prime})$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Zweite Suchphase}
+	\begin{itemize}
+		\item Populationsgröße halbieren\\[4mm]
+		\item Startpopulation:\\Nachbarschaft bester Lösung aus Suchphase 1\\[4mm]
+		\item Erzeugung der Nachbarschaft:\\$\beta$-Biased Random Sampling
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{$\beta$-Biased Random Sampling}
+	\begin{itemize}
+		\item $\beta=1-\frac{20}{J}$
+		\item Auswahlregel für $j \in \mathcal{D}$ im seriellen SGS
+		\item Ziehe Zufallszahl $p \in (0,1)$ gleichverteilt
+		\item Falls $p < \beta$ wähle $k = \lambda_i \in \mathcal{D}$ sodass $i$ minimal
+		\item Sonst wähle $j$ per biased random sampling mit $v_j=\lambda_j^{-1}$ aus $\mathcal{D} \setminus \{ k\}$
+		\item Überstunden analog zu RBBRSM einbringen
+	\end{itemize}
+\end{frame}
+
